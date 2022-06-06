@@ -1,5 +1,5 @@
-# cms-ars-5.0-moderate-red-hat-enterprise-linux-7-stig-overlay
-InSpec profile overlay to validate the secure configuration of Red Hat Enterprise Linux 7 against [DISA's](https://iase.disa.mil/stigs/Pages/index.aspx) Red Hat Enterprise Linux 7 STIG Version 2 Release 6 tailored for CMS ARS 5.0.
+# cms-ars-3.1-red-hat-enterprise-linux-7-stig-overlay
+InSpec profile overlay to validate the secure configuration of Red Hat Enterprise Linux 7 against [DISA's](https://iase.disa.mil/stigs/Pages/index.aspx) Red Hat Enterprise Linux 7 STIG Version 2 Release 6 tailored for CMS ARS 3.1.
 
 ## Getting Started  
 ### InSpec (CINC-auditor) setup
@@ -31,8 +31,8 @@ Latest versions and other installation options are available at https://cinc.sh/
 The following inputs may be configured in an inputs ".yml" file for the profile to run correctly for your specific environment. More information about InSpec inputs can be found in the [InSpec Profile Documentation](https://www.inspec.io/docs/reference/profiles/).
 
 ```
-# BASELINE (choices: low, lowHVA, moderate, moderateHVA, high, highHVA. Default: highHVA)
-cmsars5baseline: 
+# BASELINE (choices: low, moderate, high. Default: high)
+cmsars5baseline: "high"
 
 # Used by InSpec checks V-71849, V-71855, V-72037
 # InSpec Tests that are known to consistently have long run times (V-71849, V-71855, V-72037) can be disabled with this attribute
@@ -147,17 +147,17 @@ The input `disable_slow_controls (bool: false)` can be set to `true` or `false` 
 
 Against a remote target using ssh with escalated privileges (i.e., cinc-auditor installed on a separate runner host)
 ```bash
-cinc-auditor exec https://github.com/CMSgov/cms-ars-5.0-red-hat-enterprise-linux-7-stig-overlay/archive/main.tar.gz -t ssh://TARGET_USERNAME:TARGET_PASSWORD@TARGET_IP:TARGET_PORT --sudo --sudo-password=<SUDO_PASSWORD_IF_REQUIRED> --input-file <path_to_your_input_file/name_of_your_input_file.yml> --reporter json:<path_to_your_output_file/name_of_your_output_file.json> 
+cinc-auditor exec https://github.com/CMSgov/cms-ars-3.1-red-hat-enterprise-linux-7-stig-overlay/archive/main.tar.gz -t ssh://TARGET_USERNAME:TARGET_PASSWORD@TARGET_IP:TARGET_PORT --sudo --sudo-password=<SUDO_PASSWORD_IF_REQUIRED> --input-file <path_to_your_input_file/name_of_your_input_file.yml> --reporter json:<path_to_your_output_file/name_of_your_output_file.json> 
 ```
 
 Against a remote target using a pem key with escalated privileges (i.e., cinc-auditor installed on a separate runner host)
 ```bash
-cinc-auditor exec https://github.com/CMSgov/cms-ars-5.0-red-hat-enterprise-linux-7-stig-overlay/archive/main.tar.gz -t ssh://TARGET_USERNAME@TARGET_IP:TARGET_PORT --sudo -i <your_PEM_KEY> --input-file <path_to_your_input_file/name_of_your_input_file.yml> --reporter json:<path_to_your_output_file/name_of_your_output_file.json>  
+cinc-auditor exec https://github.com/CMSgov/cms-ars-3.1-red-hat-enterprise-linux-7-stig-overlay/archive/main.tar.gz -t ssh://TARGET_USERNAME@TARGET_IP:TARGET_PORT --sudo -i <your_PEM_KEY> --input-file <path_to_your_input_file/name_of_your_input_file.yml> --reporter json:<path_to_your_output_file/name_of_your_output_file.json>  
 ```
 
 Against a local Red Hat host with escalated privileges (i.e., cinc-auditor installed on the target)
 ```bash
-sudo cinc-auditor exec https://github.com/CMSgov/cms-ars-5.0-red-hat-enterprise-linux-7-stig-overlay/archive/main.tar.gz --input-file <path_to_your_input_file/name_of_your_input_file.yml> --reporter json:<path_to_your_output_file/name_of_your_output_file.json> 
+sudo cinc-auditor exec https://github.com/CMSgov/cms-ars-3.1-red-hat-enterprise-linux-7-stig-overlay/archive/main.tar.gz --input-file <path_to_your_input_file/name_of_your_input_file.yml> --reporter json:<path_to_your_output_file/name_of_your_output_file.json> 
 ```
 ### Different Run Options
 
@@ -171,18 +171,18 @@ If your runner is not always expected to have direct access to GitHub, use the f
 ```
 mkdir profiles
 cd profiles
-git clone https://github.com/CMSgov/cms-ars-5.0-red-hat-enterprise-linux-7-stig-overlay.git
-cinc-auditor archive cms-ars-5.0-red-hat-enterprise-linux-7-stig-overlay
+git clone https://github.com/CMSgov/cms-ars-3.1-red-hat-enterprise-linux-7-stig-overlay.git
+cinc-auditor archive cms-ars-3.1-red-hat-enterprise-linux-7-stig-overlay
 sudo cinc-auditor exec <name of generated archive> --input-file <path_to_your_input_file/name_of_your_input_file.yml> --reporter json:<path_to_your_output_file/name_of_your_output_file.json> 
 ```
 
 For every successive run, follow these steps to always have the latest version of this overlay and dependent profiles:
 
 ```
-cd cms-ars-5.0-red-hat-enterprise-linux-7-stig-overlay
+cd cms-ars-3.1-red-hat-enterprise-linux-7-stig-overlay
 git pull
 cd ..
-cinc-auditor archive cms-ars-5.0-red-hat-enterprise-linux-7-stig-overlay --overwrite
+cinc-auditor archive cms-ars-3.1-red-hat-enterprise-linux-7-stig-overlay --overwrite
 sudo cinc-auditor exec <name of generated archive> --input-file <path_to_your_input_file/name_of_your_input_file.yml> --reporter json:<path_to_your_output_file/name_of_your_output_file.json> 
 ```
 
@@ -203,7 +203,7 @@ The JSON InSpec results file may also be loaded into a __[full heimdall server](
 * Sam Cornwell
 
 ## Contributing and Getting Help
-To report a bug or feature request, please open an [issue](https://github.com/CMSgov/cms-ars-5.0-red-hat-enterprise-linux-7-stig-overlay/issues/new).
+To report a bug or feature request, please open an [issue](https://github.com/CMSgov/cms-ars-3.1-red-hat-enterprise-linux-7-stig-overlay/issues/new).
 
 ### NOTICE
 
