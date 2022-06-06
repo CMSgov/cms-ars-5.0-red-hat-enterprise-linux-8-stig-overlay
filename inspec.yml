@@ -1,118 +1,25 @@
-name: cms-ars-3.1-moderate-red-hat-enterprise-linux-7-stig-overlay
-title: cms-ars-3.1-moderate-red-hat-enterprise-linux-7-stig-overlay
+name: cms-ars-3.1-red-hat-enterprise-linux-7-stig-overlay
+title: cms-ars-3.1-red-hat-enterprise-linux-7-stig-overlay
 maintainer: CMS SAF team
 copyright: 
 copyright_email: saf@cms.hhs.gov
 license: Apache-2.0
-summary: "CMS ARS 3.1 Moderate Overlay InSpec Validation Profile for RHEL7 STIG"
+summary: "CMS ARS 3.1 Overlay InSpec Validation Profile for RHEL7 STIG"
 version: 2.6.1
 inspec_version: ">= 4.0"
 
 depends:
-- name: redhat-enterprise-linux-7-stig-baseline
-  url: https://github.com/mitre/redhat-enterprise-linux-7-stig-baseline/archive/master.tar.gz
-#  path: ../redhat-enterprise-linux-7-stig-baseline
+- name: cms-ars-3.1-low-red-hat-enterprise-linux-7-stig-overlay
+  url: https://github.com/CMSgov/cms-ars-3.1-low-red-hat-enterprise-linux-7-stig-overlay/archive/master.tar.gz
+- name: cms-ars-3.1-moderate-red-hat-enterprise-linux-7-stig-overlay
+  url: https://github.com/CMSgov/cms-ars-3.1-moderate-red-hat-enterprise-linux-7-stig-overlay/archive/master.tar.gz
+- name: cms-ars-3.1-high-red-hat-enterprise-linux-7-stig-overlay
+  url: https://github.com/CMSgov/cms-ars-3.1-high-red-hat-enterprise-linux-7-stig-overlay/archive/master.tar.gz
+
 
 inputs:
-- name: banner_message_text_gui
-  description: V-71861 The banner message text for GUI logins.
+- name: cmsars5baseline
+  description: Choices: low, moderate, high. Default: high
   type: string
-  value: "* This warning banner provides privacy and security notices consistent with applicable federal laws, directives, and other federal guidance for accessing this Government system, which includes (1) this computer network, (2) all computers connected to this network, and (3) all devices and storage media attached to this network or to a computer on this network.
-* This system is provided for Government authorized use only.
-* Unauthorized or improper use of this system is prohibited and may result in disciplinary action and/or civil and criminal penalties.
-* Personal use of social media and networking sites on this system is limited as to not interfere with official work duties and is subject to monitoring.
-* By using this system, you understand and consent to the following:
-- The Government may monitor, record, and audit your system usage, including usage of personal devices and email systems for official duties or to conduct HHS business. Therefore, you have no reasonable expectation of privacy regarding any communication or data transiting or stored on this system. At any time, and for any lawful Government purpose, the government may monitor, intercept, and search and seize any communication or data transiting or stored on this system.
-- Any communication or data transiting or stored on this system may be disclosed or used for any lawful Government purpose"
-  profile: redhat-enterprise-linux-7-stig-baseline
-
-- name: banner_message_text_cli
-  description: V-71863 The bannermessage text for command line interface logins.
-  type: string
-  value: "* This warning banner provides privacy and security notices consistent with applicable federal laws, directives, and other federal guidance for accessing this Government system, which includes (1) this computer network, (2) all computers connected to this network, and (3) all devices and storage media attached to this network or to a computer on this network.
-* This system is provided for Government authorized use only.
-* Unauthorized or improper use of this system is prohibited and may result in disciplinary action and/or civil and criminal penalties.
-* Personal use of social media and networking sites on this system is limited as to not interfere with official work duties and is subject to monitoring.
-* By using this system, you understand and consent to the following:
-- The Government may monitor, record, and audit your system usage, including usage of personal devices and email systems for official duties or to conduct HHS business. Therefore, you have no reasonable expectation of privacy regarding any communication or data transiting or stored on this system. At any time, and for any lawful Government purpose, the government may monitor, intercept, and search and seize any communication or data transiting or stored on this system.
-- Any communication or data transiting or stored on this system may be disclosed or used for any lawful Government purpose"
-  profile: redhat-enterprise-linux-7-stig-baseline
-
-- name: banner_message_text_ral
-  description: V-72225 The banner message text for remote access logins.
-  type: string
-  value: "* This warning banner provides privacy and security notices consistent with applicable federal laws, directives, and other federal guidance for accessing this Government system, which includes (1) this computer network, (2) all computers connected to this network, and (3) all devices and storage media attached to this network or to a computer on this network.
-* This system is provided for Government authorized use only.
-* Unauthorized or improper use of this system is prohibited and may result in disciplinary action and/or civil and criminal penalties.
-* Personal use of social media and networking sites on this system is limited as to not interfere with official work duties and is subject to monitoring.
-* By using this system, you understand and consent to the following:
-- The Government may monitor, record, and audit your system usage, including usage of personal devices and email systems for official duties or to conduct HHS business. Therefore, you have no reasonable expectation of privacy regarding any communication or data transiting or stored on this system. At any time, and for any lawful Government purpose, the government may monitor, intercept, and search and seize any communication or data transiting or stored on this system.
-- Any communication or data transiting or stored on this system may be disclosed or used for any lawful Government purpose"
-  profile: redhat-enterprise-linux-7-stig-baseline
-
-- name: difok
-  description: V-71911 DIFOK (minimum number of characters that must be different from previous password).
-  type: numeric
-  value: 6
-  profile: redhat-enterprise-linux-7-stig-baseline
-
-- name: min_reuse_generations
-  description: V-71933 Number of reuse generations.
-  type: numeric
-  value: 6
-  profile: redhat-enterprise-linux-7-stig-baseline
-
-- name: days_of_inactivity
-  description: V-71941 Number of days of inactivity.
-  type: numeric
-  value: 60
-  profile: redhat-enterprise-linux-7-stig-baseline
-
-- name: unsuccessful_attempts
-  description: V-71943 The number of unsuccessful login attempts within a certain interval before lockout.
-  type: numeric
-  value: 5
-  profile: redhat-enterprise-linux-7-stig-baseline
-
-- name: fail_interval
-  description: V-71943 The fail interval in seconds upon which an account will be locked if a certain number of unsuccessful login attempts is reached.
-  type: numeric
-  value: 7200
-  profile: redhat-enterprise-linux-7-stig-baseline
-  
-- name: lockout_time 
-  description: V-71943 The time in seconds for how long an account will be locked out.
-  type: numeric
-  value: 3600
-  profile: redhat-enterprise-linux-7-stig-baseline
-  
-- name: unsuccessful_attempts_root
-  description: V-71945 The number of unsuccessful login attempts within a certain interval before lockout.
-  type: numeric
-  value: 5
-  profile: redhat-enterprise-linux-7-stig-baseline
-
-- name: fail_interval_root
-  description: V-71945 The fail interval in seconds upon which an account will be locked if a certain number of unsuccessful login attempts is reached.
-  type: numeric
-  value: 7200
-  profile: redhat-enterprise-linux-7-stig-baseline
-  
-- name: lockout_time_root
-  description: V-71945 The time in seconds for how long an account will be locked out.
-  type: numeric
-  value: 3600
-  profile: redhat-enterprise-linux-7-stig-baseline
-
-- name: system_inactivity_timeout
-  description: V-72223 System inactivity timeout in seconds
-  type: numeric
-  value: 1800
-  profile: redhat-enterprise-linux-7-stig-baseline
-
-- name: client_alive_interval 
-  description: V-72237 Client alive interval in seconds
-  type: numeric
-  value: 1800
-  profile: redhat-enterprise-linux-7-stig-baseline
+  value: "high"
 
