@@ -18,7 +18,7 @@ depends:
 
 
 inputs:
-- name: cmsars5baseline
+- name: cmsarsbaseline
   description: Choices: low, moderate, high. Default: high
   type: string
   value: "high"
