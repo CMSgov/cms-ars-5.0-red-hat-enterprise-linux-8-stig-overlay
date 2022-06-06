@@ -32,7 +32,7 @@ The following inputs may be configured in an inputs ".yml" file for the profile 
 
 ```
 # BASELINE (choices: low, moderate, high. Default: high)
-cmsars5baseline: "high"
+cmsarsbaseline: "high"
 
 # Used by InSpec checks V-71849, V-71855, V-72037
 # InSpec Tests that are known to consistently have long run times (V-71849, V-71855, V-72037) can be disabled with this attribute
