@@ -9,17 +9,6 @@ version: 2.6.1
 inspec_version: ">= 4.0"
 
 depends:
-- name: cms-ars-3.1-low-red-hat-enterprise-linux-7-stig-overlay
-  url: https://github.com/CMSgov/cms-ars-3.1-low-red-hat-enterprise-linux-7-stig-overlay/archive/master.tar.gz
-- name: cms-ars-3.1-moderate-red-hat-enterprise-linux-7-stig-overlay
-  url: https://github.com/CMSgov/cms-ars-3.1-moderate-red-hat-enterprise-linux-7-stig-overlay/archive/master.tar.gz
-- name: cms-ars-3.1-high-red-hat-enterprise-linux-7-stig-overlay
-  url: https://github.com/CMSgov/cms-ars-3.1-high-red-hat-enterprise-linux-7-stig-overlay/archive/master.tar.gz
-
-
-inputs:
-- name: cmsarsbaseline
-  description: Choices: low, moderate, high. Default: high
-  type: string
-  value: "high"
+- name: cms-ars-3.1-red-hat-enterprise-linux-7-stig-overlay
+  url: https://github.com/CMSgov/cms-ars-3.1-#{baseline}-red-hat-enterprise-linux-7-stig-overlay/archive/master.tar.gz
 
