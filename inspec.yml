@@ -8,7 +8,24 @@ summary: "CMS ARS 3.1 Overlay InSpec Validation Profile for RHEL7 STIG"
 version: 2.6.1
 inspec_version: ">= 4.0"
 
+#depends:
+#- name: cms-ars-3.1-red-hat-enterprise-linux-7-stig-overlay
+#  url: https://github.com/CMSgov/cms-ars-3.1-"<%= ENV['baseline'] %>"-red-hat-enterprise-linux-7-stig-overlay/archive/master.tar.gz
+
+<% if ENV['BASELINE'] == 'LOW' %>
 depends:
 - name: cms-ars-3.1-red-hat-enterprise-linux-7-stig-overlay
-  url: https://github.com/CMSgov/cms-ars-3.1-#{baseline}-red-hat-enterprise-linux-7-stig-overlay/archive/master.tar.gz
+  url: https://github.com/CMSgov/cms-ars-3.1-low-red-hat-enterprise-linux-7-stig-overlay/archive/master.tar.gz
+<% end %>
 
+<% if ENV['BASELINE'] == 'MODERATE' %>
+depends:
+- name: cms-ars-3.1-red-hat-enterprise-linux-7-stig-overlay
+  url: https://github.com/CMSgov/cms-ars-3.1-moderate-red-hat-enterprise-linux-7-stig-overlay/archive/master.tar.gz
+<% end %>
+
+<% if ENV['BASELINE'] == 'HIGH' %>
+depends:
+- name: cms-ars-3.1-red-hat-enterprise-linux-7-stig-overlay
+  url: https://github.com/CMSgov/cms-ars-3.1-high-red-hat-enterprise-linux-7-stig-overlay/archive/master.tar.gz
+<% end %>
