@@ -1,7 +1,7 @@
 name: cms-ars-3.1-red-hat-enterprise-linux-7-stig-overlay
 title: cms-ars-3.1-red-hat-enterprise-linux-7-stig-overlay
 maintainer: CMS SAF team
-copyright: 
+copyright: .
 copyright_email: saf@cms.hhs.gov
 license: Apache-2.0
 summary: "CMS ARS 3.1 Overlay InSpec Validation Profile for RHEL7 STIG"
