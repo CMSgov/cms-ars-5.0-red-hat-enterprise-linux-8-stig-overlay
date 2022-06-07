@@ -26,14 +26,24 @@ cinc-auditor -v
 
 Latest versions and other installation options are available at https://cinc.sh/start/auditor/.
 
+
+## Specify your BASELINE system categization as an environment variable:
+
+```
+# BASELINE (choices: Low, Moderate, High)
+
+on linux:
+set BASELINE=High
+
+on Powershell:
+$env:BASELINE="High"
+```
+
 ## Tailoring to Your Environment
 
 The following inputs may be configured in an inputs ".yml" file for the profile to run correctly for your specific environment. More information about InSpec inputs can be found in the [InSpec Profile Documentation](https://www.inspec.io/docs/reference/profiles/).
 
 ```
-# BASELINE (choices: low, moderate, high. Default: high)
-cmsarsbaseline: "high"
-
 # Used by InSpec checks V-71849, V-71855, V-72037
 # InSpec Tests that are known to consistently have long run times (V-71849, V-71855, V-72037) can be disabled with this attribute
 # Acceptable values: false, true
