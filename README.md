@@ -1,4 +1,4 @@
-# cms-ars-5.0-red-hat-enterprise-linux-7-stig-overlay
+# cms-ars-5.0-red-hat-enterprise-linux-8-stig-overlay
 InSpec profile overlay to validate the secure configuration of Red Hat Enterprise Linux 8 against [DISA's](https://iase.disa.mil/stigs/Pages/index.aspx) Red Hat Enterprise Linux 8 STIG Version 1 Release 3 tailored for CMS ARS 5.0.
 
 ## Getting Started  
