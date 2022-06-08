@@ -1,0 +1,15 @@
+name: cms-ars-5.0-low-HVA-red-hat-enterprise-linux-8-stig-overlay
+title: cms-ars-5.0-low-HVA-red-hat-enterprise-linux-8-stig-overlay
+maintainer: CMS SAF team
+copyright: .
+copyright_email: saf@cms.hhs.gov
+license: Apache-2.0
+summary: "CMS ARS 5.0 Low HVA Overlay InSpec Validation Profile for RHEL8 STIG"
+version: 1.3.0
+inspec_version: ">= 4.0"
+
+depends:
+- name: cms-ars-5.0-moderate-HVA-red-hat-enterprise-linux-8-stig-overlay
+  path: ../cms-ars-5.0-moderate-HVA-red-hat-enterprise-linux-8-stig-overlay
+
+
