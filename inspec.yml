@@ -24,7 +24,7 @@ depends:
 <% if ENV['BASELINE'] == 'Moderate' %>
 depends:
 - name: cms-ars-5.0-moderate-red-hat-enterprise-linux-8-stig-overlay
-  path: cms-ars-5.0-moderate-red-hat-enterprise-linux-8-stig-overlay
+  path: ./cms-ars-5.0-moderate-red-hat-enterprise-linux-8-stig-overlay
 <% end %>
 
 <% if ENV['BASELINE'] == 'ModerateHVA' %>
