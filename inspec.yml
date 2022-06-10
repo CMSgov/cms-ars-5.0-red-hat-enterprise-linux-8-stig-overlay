@@ -9,39 +9,15 @@ version: 1.3.0
 inspec_version: ">= 4.0"
 
 
-<% if ENV['BASELINE'] == 'Low' %>
-depends:
-- name: cms-ars-5.0-low-red-hat-enterprise-linux-8-stig-overlay
-  path: cms-ars-5.0-low-red-hat-enterprise-linux-8-stig-overlay
-<% end %>
 
-<% if ENV['BASELINE'] == 'LowHVA' %>
 depends:
-- name: cms-ars-5.0-low-HVA-red-hat-enterprise-linux-8-stig-overlay
-  path: cms-ars-5.0-low-HVA-red-hat-enterprise-linux-8-stig-overlay
-<% end %>
+- name: redhat-enterprise-linux-8-stig-baseline
+  url: https://github.com/CMSgov/redhat-enterprise-linux-8-stig-baseline/archive/v2.1.0.tar.gz
 
-<% if ENV['BASELINE'] == 'Moderate' %>
-depends:
-- name: cms-ars-5.0-moderate-red-hat-enterprise-linux-8-stig-overlay
-  path: cms-ars-5.0-moderate-red-hat-enterprise-linux-8-stig-overlay
-<% end %>
 
-<% if ENV['BASELINE'] == 'ModerateHVA' %>
-depends:
-- name: cms-ars-5.0-moderate-HVA-red-hat-enterprise-linux-8-stig-overlay
-  path: cms-ars-5.0-moderate-HVA-red-hat-enterprise-linux-8-stig-overlay
-<% end %>
-
-<% if ENV['BASELINE'] == 'High' %>
-depends:
-- name: cms-ars-5.0-high-red-hat-enterprise-linux-8-stig-overlay
-  path: cms-ars-5.0-high-red-hat-enterprise-linux-8-stig-overlay
-<% end %>
-
-<% if ENV['BASELINE'] == 'HighHVA' %>
-depends:
-- name: cms-ars-5.0-high-HVA-red-hat-enterprise-linux-8-stig-overlay
-  path: cms-ars-5.0-high-HVA-red-hat-enterprise-linux-8-stig-overlay
-<% end %>
+inputs:
+- name: baseline
+  description: system categorization (low, moderate, high)
+  type: string
+  value: "high"
 
