@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+na_syscat_list = input('na_syscat')
+
 include_controls "redhat-enterprise-linux-8-stig-baseline" do
 
   control 'SV-230239' do
@@ -19,12 +21,12 @@ include_controls "redhat-enterprise-linux-8-stig-baseline" do
     "
   end
 
-  input('na_syscat').each do |a_control|
+  na_syscat_list.each do |a_control|
 	  control a_control do
 		impact 0.0
 		desc 'caveat', 'This is Not Applicable since the related security control is not applied to this system categorization in CMS ARS 5.0'
 	  end
-  end unless input('na_syscat').empty?
+  end unless na_syscat_list.empty?
   
 #  control "SV-230240" do
 #    impact 0.0
