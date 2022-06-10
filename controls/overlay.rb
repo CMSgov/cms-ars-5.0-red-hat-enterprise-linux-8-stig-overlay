@@ -24,7 +24,7 @@ include_controls "redhat-enterprise-linux-8-stig-baseline" do
 		impact 0.0
 		desc 'caveat', 'This is Not Applicable since the related security control is not applied to this system categorization in CMS ARS 5.0'
 	  end
-  end
+  end unless input('na_syscat').empty?
   
 #  control "SV-230240" do
 #    impact 0.0
