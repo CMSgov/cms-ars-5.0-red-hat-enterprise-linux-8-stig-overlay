@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-(sudo code, sorry:)
+(pseudocode, sorry:)
 if input(baseline) = low then 
 
 na_syscat = ["SV-230240", "SV-230241", "SV-230244"]
