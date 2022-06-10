@@ -16,8 +16,47 @@ depends:
 
 
 inputs:
-- name: baseline
-  description: system categorization (low, moderate, high)
-  type: string
-  value: "high"
 
+<% if ENV['BASELINE'] == 'Low' %>
+- name: na_syscat
+  description: n/a controls
+  type: array
+  value: 
+    - 'SV-230240'
+    - 'SV-230241'
+    - 'SV-230244'
+
+- name: difok
+  description: SV-230363 - DIFOK (minimum number of characters that must be different from previous password).
+  type: numeric
+  value: 6
+  profile: redhat-enterprise-linux-8-stig-baseline
+<% end %>
+
+<% if ENV['BASELINE'] == 'Moderate' %>
+- name: na_syscat
+  description: n/a controls
+  type: array
+  value: 
+    - 'SV-230240'
+    - 'SV-230241'
+
+- name: difok
+  description: SV-230363 - DIFOK (minimum number of characters that must be different from previous password).
+  type: numeric
+  value: 6
+  profile: redhat-enterprise-linux-8-stig-baseline
+<% end %>
+
+<% if ENV['BASELINE'] == 'High' %>
+- name: na_syscat
+  description: n/a controls
+  type: array
+    
+- name: difok
+  description: SV-230363 - DIFOK (minimum number of characters that must be different from previous password).
+  type: numeric
+  value: 12
+  profile: redhat-enterprise-linux-8-stig-baseline
+<% end %>
+  

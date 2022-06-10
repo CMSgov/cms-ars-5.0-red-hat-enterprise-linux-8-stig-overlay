@@ -1,22 +1,5 @@
 # encoding: utf-8
 
-(pseudocode, sorry:)
-if input(baseline) = low then 
-
-na_syscat = ["SV-230240", "SV-230241", "SV-230244"]
-input('difok', value: 6, profile: redhat-enterprise-linux-8-stig-baseline)
-
-if input(baseline) = moderate then 
-
-na_syscat = ["SV-230240", "SV-230241"]
-input('difok', value: 6, profile: redhat-enterprise-linux-8-stig-baseline)
-
-if input(baseline) = high then 
-
-na_syscat = []
-input('difok', value: 12, profile: redhat-enterprise-linux-8-stig-baseline)
-
-
 include_controls "redhat-enterprise-linux-8-stig-baseline" do
 
   control 'SV-230239' do
@@ -36,7 +19,7 @@ include_controls "redhat-enterprise-linux-8-stig-baseline" do
     "
   end
 
-  na_syscat.each do |a_control|
+  input('na_syscat').each do |a_control|
 	  control a_control do
 		impact 0.0
 		desc 'caveat', 'This is Not Applicable since the related security control is not applied to this system categorization in CMS ARS 5.0'
@@ -59,7 +42,7 @@ include_controls "redhat-enterprise-linux-8-stig-baseline" do
 #  end
   
   control 'SV-230363' do
-    title "RHEL 8 must require the change of at least #{difok} characters when passwords
+    title "RHEL 8 must require the change of at least #{input('difok')} characters when passwords
   are changed."
     desc  'check', "
       Verify the value of the \"difok\" option in
@@ -67,20 +50,20 @@ include_controls "redhat-enterprise-linux-8-stig-baseline" do
 
       $ sudo grep difok /etc/security/pwquality.conf
 
-      difok = #{difok}
+      difok = #{input('difok')} 
 
-      If the value of \"difok\" is set to less than \"#{difok}\" or is commented out,
+      If the value of \"difok\" is set to less than \"#{input('difok')} \" or is commented out,
   this is a finding.
     "
     desc 'fix', "
-      Configure the operating system to require the change of at least six of
+      Configure the operating system to require the change of at least #{input('difok')}  of
   the total number of characters when passwords are changed by setting the
   \"difok\" option.
 
       Add the following line to \"/etc/security/pwquality.conf\" (or modify the
   line to have the required value):
 
-      difok = #{difok}
+      difok = #{input('difok')} 
     "
   end
 
