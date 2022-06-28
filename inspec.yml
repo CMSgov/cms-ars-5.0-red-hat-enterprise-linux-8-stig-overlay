@@ -14,49 +14,39 @@ depends:
 - name: redhat-enterprise-linux-8-stig-baseline
   url: https://github.com/CMSgov/redhat-enterprise-linux-8-stig-baseline/archive/v2.1.0.tar.gz
 
-
 inputs:
+  - name: system_categorization
+    desc: "Selected system baseline based on the environment variable"
+    type: String
+    value: <%= ENV['BASELINE'].nil? ? 'Moderate (Default)' : ENV['BASELINE'] %>
 
-<% if ENV['BASELINE'] == 'Low' %>
-- name: na_syscat
-  description: n/a controls
-  type: array
-  value: 
-    - 'SV-230240'
-    - 'SV-230241'
-    - 'SV-230244'
+  - name: overlay_controls
+    desc: 'List of inapplicable controls in ARS 5.0 based on the system categorization'
+    type: Array
+<% if ENV['BASELINE'] == 'High-HVA' %>
+    value: []
+<% elsif ENV['BASELINE'] == 'High' %>
+    value: []
+<% elsif ENV['BASELINE'] == 'Moderate-HVA' %>
+    value: []
+<% elsif ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'].nil? %> # Default
+    value:
+      - "SV-230240" # SC-3
+      - "SV-230241" # SC-3
+      - "SV-230277" # SC-3
+      - "SV-230278" # SC-3
+      - "SV-230279" # SC-3
+      - "SV-230282" # SI-2 (6)
+      - "SV-230296" # IA-2 (5)
+      - "SV-230346" # AC-10
+      - "SV-230475" # AU-9 (3)
+      - "SV-230483" # AU-5 (1)
+      - "SV-244543" # AU-5 (1)
+<% elsif ENV['BASELINE'] == 'Low-HVA' %>
+    value: []
+<% elsif ENV['BASELINE'] == 'Low' %>
+    value: []
 
-- name: difok
-  description: SV-230363 - DIFOK (minimum number of characters that must be different from previous password).
-  type: numeric
-  value: 6
-  profile: redhat-enterprise-linux-8-stig-baseline
+# <% else %>
+#     required: true
 <% end %>
-
-<% if ENV['BASELINE'] == 'Moderate' %>
-- name: na_syscat
-  description: n/a controls
-  type: array
-  value: 
-    - 'SV-230240'
-    - 'SV-230241'
-
-- name: difok
-  description: SV-230363 - DIFOK (minimum number of characters that must be different from previous password).
-  type: numeric
-  value: 6
-  profile: redhat-enterprise-linux-8-stig-baseline
-<% end %>
-
-<% if ENV['BASELINE'] == 'High' %>
-- name: na_syscat
-  description: n/a controls
-  type: array
-    
-- name: difok
-  description: SV-230363 - DIFOK (minimum number of characters that must be different from previous password).
-  type: numeric
-  value: 12
-  profile: redhat-enterprise-linux-8-stig-baseline
-<% end %>
-  
