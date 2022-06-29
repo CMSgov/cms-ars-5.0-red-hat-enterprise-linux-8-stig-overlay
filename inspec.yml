@@ -26,9 +26,31 @@ inputs:
 <% if ENV['BASELINE'] == 'High-HVA' %>
     value: []
 <% elsif ENV['BASELINE'] == 'High' %>
-    value: []
+    value: #[]
+      - "SV-230240" # SC-3
+      - "SV-230241" # SC-3
+      - "SV-230277" # SC-3
+      - "SV-230278" # SC-3
+      - "SV-230279" # SC-3
+      - "SV-230282" # SI-2 (6)
+      - "SV-230296" # IA-2 (5)
+      - "SV-230346" # AC-10
+      - "SV-230475" # AU-9 (3)
+      - "SV-230483" # AU-5 (1)
+      - "SV-244543" # AU-5 (1)
 <% elsif ENV['BASELINE'] == 'Moderate-HVA' %>
-    value: []
+    value: 
+      - "SV-230240" # SC-3
+      - "SV-230241" # SC-3
+      - "SV-230277" # SC-3
+      - "SV-230278" # SC-3
+      - "SV-230279" # SC-3
+      - "SV-230282" # SI-2 (6)
+      - "SV-230296" # IA-2 (5)
+      - "SV-230346" # AC-10
+      - "SV-230475" # AU-9 (3)
+      - "SV-230483" # AU-5 (1)
+      - "SV-244543" # AU-5 (1)
 <% elsif ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'].nil? %> # Default
     value:
       - "SV-230240" # SC-3
@@ -43,9 +65,31 @@ inputs:
       - "SV-230483" # AU-5 (1)
       - "SV-244543" # AU-5 (1)
 <% elsif ENV['BASELINE'] == 'Low-HVA' %>
-    value: []
+    value: #[]
+      - "SV-230240" # SC-3
+      - "SV-230241" # SC-3
+      - "SV-230277" # SC-3
+      - "SV-230278" # SC-3
+      - "SV-230279" # SC-3
+      - "SV-230282" # SI-2 (6)
+      - "SV-230296" # IA-2 (5)
+      - "SV-230346" # AC-10
+      - "SV-230475" # AU-9 (3)
+      - "SV-230483" # AU-5 (1)
+      - "SV-244543" # AU-5 (1)
 <% elsif ENV['BASELINE'] == 'Low' %>
-    value: []
+    value: #[]
+      - "SV-230240" # SC-3
+      - "SV-230241" # SC-3
+      - "SV-230277" # SC-3
+      - "SV-230278" # SC-3
+      - "SV-230279" # SC-3
+      - "SV-230282" # SI-2 (6)
+      - "SV-230296" # IA-2 (5)
+      - "SV-230346" # AC-10
+      - "SV-230475" # AU-9 (3)
+      - "SV-230483" # AU-5 (1)
+      - "SV-244543" # AU-5 (1)
 
 # <% else %>
 #     required: true
