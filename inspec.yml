@@ -48,7 +48,7 @@ inputs:
       - "SV-230483" # AU-5 (1)
       - "SV-244543" # AU-5 (1)
 <% elsif ENV['BASELINE'] == 'Low-HVA' %>
-    value: #[]
+    value:
       - "SV-230346" # AC-10
       - "SV-230347" # AC-11
       - "SV-230348" # AC-11
@@ -110,7 +110,7 @@ inputs:
       - "SV-230280" # SI-16
 
 <% elsif ENV['BASELINE'] == 'Low' %>
-    value: #[]
+    value:
       - "SV-230374" # AC-2 (2)
       - "SV-237642" # AC-6 (5)
       - "SV-230346" # AC-10
