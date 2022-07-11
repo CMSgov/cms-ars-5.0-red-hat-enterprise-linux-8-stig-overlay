@@ -1632,3 +1632,191 @@ include_controls "redhat-enterprise-linux-8-stig-baseline" do
         CMS time source, this is a finding."
     end
 
+    control 'SV-230504' do
+        desc "Failure to restrict network connectivity only to authorized systems
+        permits inbound connections from malicious systems. It also permits outbound
+        connections that may facilitate exfiltration of CMS data.
+        
+            RHEL 8 incorporates the \"firewalld\" daemon, which allows for many
+        different configurations. One of these configurations is zones. Zones can be
+        utilized to a deny-all, allow-by-exception approach. The default \"drop\" zone
+        will drop all incoming network packets unless it is explicitly allowed by the
+        configuration file or is related to an outgoing network connection."
+    end
+
+    control 'SV-230505' do
+        desc "\"Firewalld\" provides an easy and effective way to block/limit remote
+        access to the system via ports, services, and protocols.
+        
+            Remote access services, such as those providing remote access to network
+        devices and information systems, which lack automated control capabilities,
+        increase risk and make remote user access management difficult at best.
+        
+            Remote access is access to CMS nonpublic information systems by an
+        authorized user (or an information system) communicating through an external,
+        non-organization-controlled network. Remote access methods include, for
+        example, dial-up, broadband, and wireless.
+        
+            RHEL 8 functionality (e.g., RDP) must be capable of taking enforcement
+        action if the audit reveals unauthorized activity. Automated control of remote
+        access sessions allows organizations to ensure ongoing compliance with remote
+        access policies by enforcing connection rules of remote access applications on
+        a variety of information system components (e.g., servers, workstations,
+        notebook computers, smartphones, and tablets)."
+    end
+
+    control 'SV-230506' do
+        desc "Without protection of communications with wireless peripherals,
+        confidentiality and integrity may be compromised because unprotected
+        communications can be intercepted and either read, altered, or used to
+        compromise the RHEL 8 operating system.
+        
+            This requirement applies to wireless peripheral technologies (e.g.,
+        wireless mice, keyboards, displays, etc.) used with RHEL 8 systems. Wireless
+        peripherals (e.g., Wi-Fi/Bluetooth/IR Keyboards, Mice, and Pointing Devices and
+        Near Field Communications [NFC]) present a unique challenge by creating an
+        open, unsecured port on a computer. Wireless peripherals must meet CMS
+        requirements for wireless data transmission and be approved for use by the
+        Authorizing Official (AO). Even though some wireless peripherals, such as mice
+        and pointing devices, do not ordinarily carry information that need to be
+        protected, modification of communications with these wireless peripherals may
+        be used to compromise the RHEL 8 operating system. Communication paths outside
+        the physical protection of a controlled boundary are exposed to the possibility
+        of interception and modification.
+        
+            Protecting the confidentiality and integrity of communications with
+        wireless peripherals can be accomplished by physical means (e.g., employing
+        physical barriers to wireless radio frequencies) or by logical means (e.g.,
+        employing cryptographic techniques). If physical means of protection are
+        employed, then logical means (cryptography) do not have to be employed, and
+        vice versa. If the wireless peripheral is only passing telemetry data,
+        encryption of the data may not be required."
+    end
+
+    control 'SV-230507' do
+        desc "Without protection of communications with wireless peripherals,
+        confidentiality and integrity may be compromised because unprotected
+        communications can be intercepted and either read, altered, or used to
+        compromise the RHEL 8 operating system.
+        
+            This requirement applies to wireless peripheral technologies (e.g.,
+        wireless mice, keyboards, displays, etc.) used with RHEL 8 systems. Wireless
+        peripherals (e.g., Wi-Fi/Bluetooth/IR Keyboards, Mice, and Pointing Devices and
+        Near Field Communications [NFC]) present a unique challenge by creating an
+        open, unsecured port on a computer. Wireless peripherals must meet CMS
+        requirements for wireless data transmission and be approved for use by the
+        Authorizing Official (AO). Even though some wireless peripherals, such as mice
+        and pointing devices, do not ordinarily carry information that need to be
+        protected, modification of communications with these wireless peripherals may
+        be used to compromise the RHEL 8 operating system. Communication paths outside
+        the physical protection of a controlled boundary are exposed to the possibility
+        of interception and modification.
+        
+            Protecting the confidentiality and integrity of communications with
+        wireless peripherals can be accomplished by physical means (e.g., employing
+        physical barriers to wireless radio frequencies) or by logical means (e.g.,
+        employing cryptographic techniques). If physical means of protection are
+        employed, then logical means (cryptography) do not have to be employed, and
+        vice versa. If the wireless peripheral is only passing telemetry data,
+        encryption of the data may not be required."
+    end
+
+    control 'SV-237640' do
+        desc "Unapproved mechanisms that are used for authentication to the
+        cryptographic module are not verified and therefore cannot be relied upon to
+        provide confidentiality or integrity, and CMS data may be compromised.
+        
+            RHEL 8 systems utilizing encryption are required to use FIPS-compliant
+        mechanisms for authenticating to cryptographic modules.
+        
+            Currently, Kerberos does not utilize FIPS 140-2 cryptography.
+        
+            FIPS 140-2 is the current standard for validating that mechanisms used to
+        access cryptographic modules utilize authentication that meets CMS
+        requirements. This allows for Security Levels 1, 2, 3, or 4 for use on a
+        general-purpose computing system."
+    end
+
+    control 'SV-244524' do
+        desc "Unapproved mechanisms that are used for authentication to the
+        cryptographic module are not verified and therefore cannot be relied upon to
+        provide confidentiality or integrity, and CMS data may be compromised.
+        
+            RHEL 8 systems utilizing encryption are required to use FIPS-compliant
+        mechanisms for authenticating to cryptographic modules.
+        
+            FIPS 140-2 is the current standard for validating that mechanisms used to
+        access cryptographic modules utilize authentication that meets CMS
+        requirements. This allows for Security Levels 1, 2, 3, or 4 for use on a
+        general-purpose computing system."
+    end
+
+    control 'SV-244525' do
+        desc 'check', "Verify all network connections associated with SSH traffic are
+        automatically terminated at the end of the session or after 30 minutes of
+        inactivity.
+        
+            Check that the \"ClientAliveInterval\" variable is set to a value of
+        \"600\" or less by performing the following command:
+        
+            $ sudo grep -i clientalive /etc/ssh/sshd_config
+        
+            ClientAliveInterval 600
+            ClientAliveCountMax 0
+        
+            If \"ClientAliveInterval\" does not exist, does not have a value of \"600\"
+        or less in \"/etc/ssh/sshd_config\", or is commented out, this is a finding."
+
+        desc 'fix', "Configure RHEL 8 to automatically terminate all network connections
+        associated with SSH traffic at the end of a session or after 30 minutes of
+        inactivity.
+        
+            Modify or append the following lines in the \"/etc/ssh/sshd_config\" file:
+        
+            ClientAliveInterval 600
+        
+            In order for the changes to take effect, the SSH daemon must be restarted.
+        
+            $ sudo systemctl restart sshd.service"
+    end
+
+    control 'SV-244526' do
+        desc "Without cryptographic integrity protections, information can be
+        altered by unauthorized users without detection.
+        
+            Remote access (e.g., RDP) is access to CMS nonpublic information systems by
+        an authorized user (or an information system) communicating through an
+        external, non-organization-controlled network. Remote access methods include,
+        for example, dial-up, broadband, and wireless.
+        
+            Cryptographic mechanisms used for protecting the integrity of information
+        include, for example, signed hash functions using asymmetric cryptography
+        enabling distribution of the public key to verify the hash information while
+        maintaining the confidentiality of the secret key used to generate the hash.
+        
+            RHEL 8 incorporates system-wide crypto policies by default. The SSH
+        configuration file has no effect on the ciphers, MACs, or algorithms unless
+        specifically defined in the /etc/sysconfig/sshd file. The employed algorithms
+        can be viewed in the /etc/crypto-policies/back-ends/ directory."
+    end
+
+    control 'SV-244544' do
+        desc "\"Firewalld\" provides an easy and effective way to block/limit remote
+        access to the system via ports, services, and protocols.
+        
+            Remote access services, such as those providing remote access to network
+        devices and information systems, which lack automated control capabilities,
+        increase risk and make remote user access management difficult at best.
+        
+            Remote access is access to CMS nonpublic information systems by an
+        authorized user (or an information system) communicating through an external,
+        non-organization-controlled network. Remote access methods include, for
+        example, dial-up, broadband, and wireless.
+            RHEL 8 functionality (e.g., RDP) must be capable of taking enforcement
+        action if the audit reveals unauthorized activity. Automated control of remote
+        access sessions allows organizations to ensure ongoing compliance with remote
+        access policies by enforcing connection rules of remote access applications on
+        a variety of information system components (e.g., servers, workstations,
+        notebook computers, smartphones, and tablets)."
+    end
+end
