@@ -117,9 +117,9 @@ inputs:
       - "SV-230276" # SI-16
       - "SV-230280" # SI-16
 
-<% elsif ENV['BASELINE'] == 'Low' %> # NEED TO ADJUST
+<% elsif ENV['BASELINE'] == 'Low' %> 
     value:
-      - "SV-230331" # AC-2 (2) # NEW
+      - "SV-230331" # AC-2 (2)
       - "SV-230374" # AC-2 (2)
       - "SV-237642" # AC-6 (5)
       - "SV-230346" # AC-10
