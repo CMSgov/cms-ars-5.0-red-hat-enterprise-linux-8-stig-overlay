@@ -20,6 +20,14 @@ inputs:
     type: String
     value: <%= ENV['BASELINE'].nil? ? 'Moderate (Default)' : ENV['BASELINE'] %>
 
+  - name: org_name
+    desc: "Name of the organization running this profile"
+    type: Hash
+    value:
+      acronym: "CMS"
+      full_form: "Centers for Medicare & Medicaid Services"
+    profile: redhat-enterprise-linux-8-stig-baseline
+
   - name: overlay_controls
     desc: 'List of inapplicable controls in ARS 5.0 based on the system categorization'
     type: Array
@@ -111,6 +119,7 @@ inputs:
 
 <% elsif ENV['BASELINE'] == 'Low' %> # NEED TO ADJUST
     value:
+      - "SV-230331" # AC-2 (2) # NEW
       - "SV-230374" # AC-2 (2)
       - "SV-237642" # AC-6 (5)
       - "SV-230346" # AC-10
@@ -129,6 +138,7 @@ inputs:
       - "SV-230228" # AC-17 (1)
       - "SV-230504" # AC-17 (1)
       - "SV-230505" # AC-17 (1)
+      - "SV-244544" # AC-17 (1)
       - "SV-230223" # AC-17 (2)
       - "SV-230251" # AC-17 (2)
       - "SV-230252" # AC-17 (2)
@@ -168,7 +178,7 @@ inputs:
       - "SV-244548" # IA-3
       - "SV-230229" # IA-5 (2)
       - "SV-230230" # IA-5 (2)
-      - "SV-230355" # IA-5 (2)
+      - "SV-230355" # IA-5 (2) 
       - "SV-230240" # SC-3
       - "SV-230241" # SC-3
       - "SV-230277" # SC-3
