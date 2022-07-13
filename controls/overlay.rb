@@ -24,7 +24,7 @@ include_controls 'redhat-enterprise-linux-8-stig-baseline' do
   end
 
   control 'SV-230244' do
-      title "RHEL 8 must be configured so that all network connections associated
+      desc 'title', "RHEL 8 must be configured so that all network connections associated
       with SSH traffic are terminated at the end of the session or after 30 minutes
       of inactivity, except to fulfill documented and validated mission requirements."
 
@@ -67,7 +67,7 @@ include_controls 'redhat-enterprise-linux-8-stig-baseline' do
   end
 
   control 'SV-230331' do
-      title "RHEL 8 temporary user accounts must be provisioned with an expiration
+      desc 'title', "RHEL 8 temporary user accounts must be provisioned with an expiration
       time of 24 hours or less."
 
       desc "If temporary user accounts remain active when no longer needed or for
@@ -108,7 +108,7 @@ include_controls 'redhat-enterprise-linux-8-stig-baseline' do
   end
 
   control 'SV-230332' do
-      title "RHEL 8 must automatically lock an account when five unsuccessful
+      desc 'title', "RHEL 8 must automatically lock an account when five unsuccessful
       logon attempts occur."
 
       desc 'check', "Check that the system locks an account after five unsuccessful logon
@@ -168,7 +168,7 @@ include_controls 'redhat-enterprise-linux-8-stig-baseline' do
   end
 
   control 'SV-230333' do
-      title "RHEL 8 must automatically lock an account when five unsuccessful
+      desc 'title', "RHEL 8 must automatically lock an account when five unsuccessful
       logon attempts occur."
 
       desc 'check', "Note: This check applies to RHEL versions 8.2 or newer, if the system is
@@ -194,7 +194,7 @@ include_controls 'redhat-enterprise-linux-8-stig-baseline' do
   end
 
   control 'SV-230334' do
-      title "RHEL 8 must automatically lock an account when five unsuccessful
+      desc 'title', "RHEL 8 must automatically lock an account when five unsuccessful
       logon attempts occur during a 120-minute time period."
 
       desc 'check', "Check that the system locks an account after five unsuccessful logon
@@ -254,7 +254,7 @@ include_controls 'redhat-enterprise-linux-8-stig-baseline' do
   end
 
   control 'SV-230335' do
-      title "RHEL 8 must automatically lock an account when five unsuccessful
+      desc 'title', "RHEL 8 must automatically lock an account when five unsuccessful
       logon attempts occur during a 120-minute time period."
 
       desc 'check', "Note: This check applies to RHEL versions 8.2 or newer, if the system is
@@ -280,7 +280,7 @@ include_controls 'redhat-enterprise-linux-8-stig-baseline' do
   end
 
   control 'SV-230336' do
-      title "RHEL 8 must automatically lock an account until the locked account is
+      desc 'title', "RHEL 8 must automatically lock an account until the locked account is
       released by an administrator when five unsuccessful logon attempts occur
       during a 120-minute time period."
 
@@ -320,7 +320,7 @@ include_controls 'redhat-enterprise-linux-8-stig-baseline' do
   end
 
   control 'SV-230337' do
-      title "RHEL 8 must automatically lock an account until the locked account is
+      desc 'title', "RHEL 8 must automatically lock an account until the locked account is
       released by an administrator when five unsuccessful logon attempts occur
       during a 120-minute time period."
 
@@ -388,7 +388,7 @@ include_controls 'redhat-enterprise-linux-8-stig-baseline' do
   end
 
   control 'SV-230340' do
-      title "RHEL 8 must prevent system messages from being presented when five
+      desc 'title', "RHEL 8 must prevent system messages from being presented when five
       unsuccessful logon attempts occur."
 
       desc 'check', "Check that the system prevents informative messages from being presented to
@@ -424,12 +424,12 @@ include_controls 'redhat-enterprise-linux-8-stig-baseline' do
   end
 
   control 'SV-230341' do
-      title "RHEL 8 must prevent system messages from being presented when five
+      desc 'title', "RHEL 8 must prevent system messages from being presented when five
       unsuccessful logon attempts occur."
   end
 
   control 'SV-230344' do
-      title "RHEL 8 must include root when automatically locking an account until
+      desc 'title', "RHEL 8 must include root when automatically locking an account until
       the locked account is released by an administrator when five unsuccessful
       logon attempts occur during a 120-minute time period."
 
@@ -482,7 +482,7 @@ include_controls 'redhat-enterprise-linux-8-stig-baseline' do
   end
 
   control 'SV-230345' do
-      title "RHEL 8 must include root when automatically locking an account until
+      desc 'title', "RHEL 8 must include root when automatically locking an account until
       the locked account is released by an administrator when five unsuccessful
       logon attempts occur during a 120-minute time period."
   end
@@ -525,7 +525,7 @@ include_controls 'redhat-enterprise-linux-8-stig-baseline' do
   end
 
   control 'SV-230374' do
-      title "RHEL 8 emergency accounts must be automatically removed or disabled
+      desc 'title' "RHEL 8 emergency accounts must be automatically removed or disabled
       after the crisis is resolved or within 24 hours."
 
       desc 'check', "Verify emergency accounts have been provisioned with an expiration date of
@@ -552,7 +552,7 @@ include_controls 'redhat-enterprise-linux-8-stig-baseline' do
   end
 
   control 'SV-230484' do
-      title "RHEL 8 must securely compare internal information system clocks at
+      desc 'title', "RHEL 8 must securely compare internal information system clocks at
       least every 24 hours with a server synchronized to an authoritative time
       source, such as the United States Naval Observatory (USNO) time servers, or a
       time server designated for the appropriate CMS network."
