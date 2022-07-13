@@ -8,11 +8,10 @@ summary: "CMS ARS 5.0 Overlay InSpec Validation Profile for RHEL8 STIG"
 version: 1.3.0
 inspec_version: ">= 4.0"
 
-
-
 depends:
 - name: redhat-enterprise-linux-8-stig-baseline
-  url: https://github.com/CMSgov/redhat-enterprise-linux-8-stig-baseline/archive/v2.1.0.tar.gz
+  #url: https://github.com/ssayed118/redhat-enterprise-linux-8-stig-baseline.git
+  url: https://github.com/ssayed118/redhat-enterprise-linux-8-stig-baseline/archive/main.tar.gz
 
 inputs:
   - name: system_categorization
