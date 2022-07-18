@@ -1,0 +1,17 @@
+org_name: {acronym: "CMS", full_form: "Centers for Medicare and Medicaid"}
+
+mins_of_inactivity: 30
+
+system_inactivity_timeout: 1800
+
+temp_account_expire_time: {hours: 24, days: 1}
+
+storage_volume: 80
+
+storage_space_left: 20
+
+unsuccessful_attempts: 5
+
+fail_interval_time: {minutes: 120, seconds: 7200 }
+
+#do i need to put overlay_controls in here? (the non-apps?)
