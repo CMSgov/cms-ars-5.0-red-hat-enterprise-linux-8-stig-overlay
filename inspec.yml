@@ -41,7 +41,7 @@ inputs:
 #SV-230331, SV-230374
   - name: temp_account_expire_time
     desc: Temporary (short term) should be set with an expiration date/time (time in hours)
-    type: Numeric
+    type: Hash
     value: 
       hours: 24
       days: 1
@@ -69,7 +69,7 @@ inputs:
 
   - name: fail_interval_time #also added to SV-230535
     description: Interval of time in which the consecutive failed logon attempts must occur in order for the account to be locked out
-    type: Numeric
+    type: Hash
     value: 
       minutes: 120
       seconds: 7200
@@ -249,6 +249,6 @@ inputs:
       - "SV-230250" # SI-11
       - "SV-230276" # SI-16
       - "SV-230280" # SI-16
-# <% else %>
-#     required: true
+  <% else %>
+    required: true
 <% end %>

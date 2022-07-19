@@ -27,7 +27,7 @@ include_controls 'redhat-enterprise-linux-8-stig-baseline' do
     title "RHEL 8 must securely compare internal information system clocks at
     least every 24 hours with a server synchronized to an authoritative time
     source, such as the United States Naval Observatory (USNO) time servers, or a
-    time server designated for the appropriate #{ input('org_name')[:acronym] } network."
+    time server designated for the appropriate #{input('org_name')[:acronym]} network."
   end
 
 end
