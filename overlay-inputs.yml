@@ -10,7 +10,7 @@ storage_volume: 80
 
 storage_space_left: 20
 
-unsuccessful_attempts: 5
+unsuccessful_attempts: {3, 5}
 
 fail_interval_time: {minutes: 120, seconds: 7200 }
 
