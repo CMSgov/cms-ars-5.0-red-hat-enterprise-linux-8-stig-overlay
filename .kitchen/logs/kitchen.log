@@ -1,0 +1,29 @@
+I, [2022-07-19T13:59:20.066588 #88259]  INFO -- Kitchen: -----> Starting Test Kitchen (v3.2.2)
+E, [2022-07-19T13:59:20.066897 #88259] ERROR -- Kitchen: ------Exception-------
+E, [2022-07-19T13:59:20.066962 #88259] ERROR -- Kitchen: Class: Kitchen::UserError
+E, [2022-07-19T13:59:20.066994 #88259] ERROR -- Kitchen: Message: Kitchen YAML file /Users/ssayed/overlays/forks/cms-ars-5.0-red-hat-enterprise-linux-8-stig-overlay/kitchen.yml does not exist.
+E, [2022-07-19T13:59:20.067013 #88259] ERROR -- Kitchen: ----------------------
+E, [2022-07-19T13:59:20.067028 #88259] ERROR -- Kitchen: ------Backtrace-------
+E, [2022-07-19T13:59:20.067042 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/gems/test-kitchen-3.2.2/lib/kitchen/loader/yaml.rb:65:in `read'
+E, [2022-07-19T13:59:20.067056 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/gems/test-kitchen-3.2.2/lib/kitchen/config.rb:153:in `data'
+E, [2022-07-19T13:59:20.067070 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/gems/test-kitchen-3.2.2/lib/kitchen/config.rb:131:in `suites'
+E, [2022-07-19T13:59:20.067084 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/gems/test-kitchen-3.2.2/lib/kitchen/config.rb:183:in `filter_instances'
+E, [2022-07-19T13:59:20.067098 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/gems/test-kitchen-3.2.2/lib/kitchen/config.rb:142:in `build_instances'
+E, [2022-07-19T13:59:20.067112 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/gems/test-kitchen-3.2.2/lib/kitchen/config.rb:116:in `instances'
+E, [2022-07-19T13:59:20.067126 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/gems/test-kitchen-3.2.2/lib/kitchen/command.rb:109:in `filtered_instances'
+E, [2022-07-19T13:59:20.067140 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/gems/test-kitchen-3.2.2/lib/kitchen/command.rb:139:in `parse_subcommand'
+E, [2022-07-19T13:59:20.067154 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/gems/test-kitchen-3.2.2/lib/kitchen/command/action.rb:34:in `block in call'
+E, [2022-07-19T13:59:20.067168 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/rubies/ruby-2.7.6/lib/ruby/2.7.0/benchmark.rb:293:in `measure'
+E, [2022-07-19T13:59:20.067183 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/gems/test-kitchen-3.2.2/lib/kitchen/command/action.rb:33:in `call'
+E, [2022-07-19T13:59:20.067197 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/gems/test-kitchen-3.2.2/lib/kitchen/cli.rb:52:in `perform'
+E, [2022-07-19T13:59:20.067211 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/gems/test-kitchen-3.2.2/lib/kitchen/cli.rb:198:in `block (2 levels) in <class:CLI>'
+E, [2022-07-19T13:59:20.067225 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/gems/thor-1.2.1/lib/thor/command.rb:27:in `run'
+E, [2022-07-19T13:59:20.067239 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/gems/thor-1.2.1/lib/thor/invocation.rb:127:in `invoke_command'
+E, [2022-07-19T13:59:20.067265 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/gems/thor-1.2.1/lib/thor.rb:392:in `dispatch'
+E, [2022-07-19T13:59:20.067281 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/gems/thor-1.2.1/lib/thor/base.rb:485:in `start'
+E, [2022-07-19T13:59:20.067295 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/gems/test-kitchen-3.2.2/bin/kitchen:11:in `block in <top (required)>'
+E, [2022-07-19T13:59:20.067310 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/gems/test-kitchen-3.2.2/lib/kitchen/errors.rb:183:in `with_friendly_errors'
+E, [2022-07-19T13:59:20.067324 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/gems/test-kitchen-3.2.2/bin/kitchen:11:in `<top (required)>'
+E, [2022-07-19T13:59:20.067338 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/bin/kitchen:23:in `load'
+E, [2022-07-19T13:59:20.067381 #88259] ERROR -- Kitchen: /Users/ssayed/.rvm/gems/ruby-2.7.6/bin/kitchen:23:in `<main>'
+E, [2022-07-19T13:59:20.067398 #88259] ERROR -- Kitchen: ----End Backtrace-----

@@ -10,8 +10,8 @@ inspec_version: ">= 4.0"
 
 depends:
 - name: redhat-enterprise-linux-8-stig-baseline
-  #path: /Users/ssayed/redhat8-baselines/redhat-enterprise-linux-8-stig-baseline
-  url: https://github.com/ssayed118/redhat-enterprise-linux-8-stig-baseline/archive/main.tar.gz
+  path: /Users/ssayed/redhat8-baselines/redhat-enterprise-linux-8-stig-baseline
+  #url: https://github.com/ssayed118/redhat-enterprise-linux-8-stig-baseline/archive/main.tar.gz
 
 inputs:
   - name: system_categorization
@@ -19,13 +19,190 @@ inputs:
     type: String
     value: <%= ENV['BASELINE'].nil? ? 'Moderate (Default)' : ENV['BASELINE'] %>
 
-  - name: org_name
+  - name: org_name #could make this into a string since full_form isn't used anywhere
     desc: "Name of the organization running this profile"
     type: Hash
     value:
       acronym: "CMS"
       full_form: "Centers for Medicare & Medicaid Services"
     profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: overlay_controls
+    desc: 'List of inapplicable controls in ARS 5.0 based on the system categorization'
+    type: Array
+    <% if ENV['BASELINE'] == 'High-HVA' %>
+      value: [] 
+    <% elsif ENV['BASELINE'] == 'High' %>
+      value: []
+    <% elsif ENV['BASELINE'] == 'Moderate-HVA' %>
+      value: 
+        - "SV-230346" # AC-10
+        - "SV-230483" # AU-5 (1)
+        - "SV-244543" # AU-5 (1)
+        - "SV-230296" # IA-2 (5)
+        - "SV-230282" # SI-6 a
+    <% elsif ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'].nil? %> # Default
+      value:
+        - "SV-230240" # SC-3
+        - "SV-230241" # SC-3
+        - "SV-230277" # SC-3
+        - "SV-230278" # SC-3
+        - "SV-230279" # SC-3
+        - "SV-230282" # SI-2 (6)
+        - "SV-230296" # IA-2 (5)
+        - "SV-230346" # AC-10
+        - "SV-230475" # AU-9 (3)
+        - "SV-230483" # AU-5 (1)
+        - "SV-244543" # AU-5 (1)
+    <% elsif ENV['BASELINE'] == 'Low-HVA' %>
+      value:
+        - "SV-230346" # AC-10
+        - "SV-230347" # AC-11
+        - "SV-230348" # AC-11
+        - "SV-230349" # AC-11
+        - "SV-230350" # AC-11
+        - "SV-230351" # AC-11
+        - "SV-230352" # AC-11
+        - "SV-230353" # AC-11
+        - "SV-230354" # AC-11
+        - "SV-230535" # AC-11
+        - "SV-230537" # AC-11
+        - "SV-230538" # AC-11
+        - "SV-230539" # AC-11
+        - "SV-230228" # AC-17 (1)
+        - "SV-230504" # AC-17 (1)
+        - "SV-230505" # AC-17 (1)
+        - "SV-244544" # AC-17 (1)
+        - "SV-230506" # AC-18 (1)
+        - "SV-230507" # AC-18 (1)
+        - "SV-230483" # AU-5 (1)
+        - "SV-244543" # AU-5 (1)
+        - "SV-230508" # CM-7 (2)
+        - "SV-230509" # CM-7 (2)
+        - "SV-230510" # CM-7 (2)
+        - "SV-230511" # CM-7 (2)
+        - "SV-230512" # CM-7 (2)
+        - "SV-230513" # CM-7 (2)
+        - "SV-230514" # CM-7 (2)
+        - "SV-230515" # CM-7 (2)
+        - "SV-230516" # CM-7 (2)
+        - "SV-230517" # CM-7 (2)
+        - "SV-230518" # CM-7 (2)
+        - "SV-230519" # CM-7 (2)
+        - "SV-230520" # CM-7 (2)
+        - "SV-230521" # CM-7 (2)
+        - "SV-230522" # CM-7 (2)
+        - "SV-230523" # CM-7 (2)
+        - "SV-230545" # CM-7 (2)
+        - "SV-230546" # CM-7 (2)
+        - "SV-230296" # IA-2 (5)
+        - "SV-230229" # IA-5 (2)
+        - "SV-230230" # IA-5 (2)
+        - "SV-230355" # IA-5 (2)
+        - "SV-230242" # SC-4
+        - "SV-230243" # SC-4
+        - "SV-230269" # SC-4
+        - "SV-230270" # SC-4
+        - "SV-230244" # SC-10
+        - "SV-244525" # SC-10
+        - "SV-244540" # SI-2 (2)
+        - "SV-230282" # SI-6
+        - "SV-230245" # SI-11
+        - "SV-230246" # SI-11
+        - "SV-230247" # SI-11
+        - "SV-230248" # SI-11
+        - "SV-230249" # SI-11
+        - "SV-230250" # SI-11
+        - "SV-230276" # SI-16
+        - "SV-230280" # SI-1  
+    <% elsif ENV['BASELINE'] == 'Low' %> 
+      value:
+        - "SV-230331" # AC-2 (2)
+        - "SV-230374" # AC-2 (2)
+        - "SV-237642" # AC-6 (5)
+        - "SV-230346" # AC-10
+        - "SV-230347" # AC-11
+        - "SV-230348" # AC-11
+        - "SV-230349" # AC-11
+        - "SV-230350" # AC-11
+        - "SV-230351" # AC-11
+        - "SV-230352" # AC-11
+        - "SV-230353" # AC-11
+        - "SV-230354" # AC-11
+        - "SV-230535" # AC-11
+        - "SV-230537" # AC-11
+        - "SV-230538" # AC-11
+        - "SV-230539" # AC-11
+        - "SV-230228" # AC-17 (1)
+        - "SV-230504" # AC-17 (1)
+        - "SV-230505" # AC-17 (1)
+        - "SV-244544" # AC-17 (1)
+        - "SV-230223" # AC-17 (2)
+        - "SV-230251" # AC-17 (2)
+        - "SV-230252" # AC-17 (2)
+        - "SV-230254" # AC-17 (2)
+        - "SV-230255" # AC-17 (2)
+        - "SV-230256" # AC-17 (2)
+        - "SV-230257" # AC-17 (2)
+        - "SV-244526" # AC-17 (2)
+        - "SV-230506" # AC-18 (1)
+        - "SV-230507" # AC-18 (1)
+        - "SV-230483" # AU-5 (1)
+        - "SV-244543" # AU-5 (1)
+        - "SV-230475" # AU-9 (3)
+        - "SV-230508" # CM-7 (2)
+        - "SV-230509" # CM-7 (2)
+        - "SV-230510" # CM-7 (2)
+        - "SV-230511" # CM-7 (2)
+        - "SV-230512" # CM-7 (2)
+        - "SV-230513" # CM-7 (2)
+        - "SV-230514" # CM-7 (2)
+        - "SV-230515" # CM-7 (2)
+        - "SV-230516" # CM-7 (2)
+        - "SV-230517" # CM-7 (2)
+        - "SV-230518" # CM-7 (2)
+        - "SV-230519" # CM-7 (2)
+        - "SV-230520" # CM-7 (2)
+        - "SV-230521" # CM-7 (2)
+        - "SV-230522" # CM-7 (2)
+        - "SV-230523" # CM-7 (2)
+        - "SV-230545" # CM-7 (2)
+        - "SV-230546" # CM-7 (2)
+        - "SV-230296" # IA-2 (5)
+        - "SV-230502" # IA-3
+        - "SV-230503" # IA-3
+        - "SV-230524" # IA-3
+        - "SV-244547" # IA-3
+        - "SV-244548" # IA-3
+        - "SV-230229" # IA-5 (2)
+        - "SV-230230" # IA-5 (2)
+        - "SV-230355" # IA-5 (2) 
+        - "SV-230240" # SC-3
+        - "SV-230241" # SC-3
+        - "SV-230277" # SC-3
+        - "SV-230278" # SC-3
+        - "SV-230279" # SC-3
+        - "SV-230242" # SC-4
+        - "SV-230243" # SC-4
+        - "SV-230269" # SC-4
+        - "SV-230270" # SC-4
+        - "SV-230526" # SC-8
+        - "SV-244549" # SC-8
+        - "SV-230244" # SC-10
+        - "SV-244525" # SC-10      
+        - "SV-230224" # SC-28
+        - "SV-244540" # SI-2 (2)
+        - "SV-230282" # SI-6
+        - "SV-230245" # SI-11
+        - "SV-230246" # SI-11
+        - "SV-230247" # SI-11
+        - "SV-230248" # SI-11
+        - "SV-230249" # SI-11
+        - "SV-230250" # SI-11
+        - "SV-230276" # SI-16
+        - "SV-230280" # SI-16
+    <% else %>
+      required: true
 
 #SV-230244, SV-244525:
   - name: mins_of_inactivity
@@ -35,10 +212,16 @@ inputs:
     profile: redhat-enterprise-linux-8-stig-baseline
 
   - name: system_inactivity_timeout
-    description: Maximum system inactivity timeout (time in seconds).
+    desc: Maximum system inactivity timeout (time in seconds).
     type: Numeric
     value: 1800
     profile: redhat-enterprise-linux-8-stig-baseline
+
+#SV-230244
+  - name: client_alive_interval 
+    desc:
+    type: Numeric
+    value: 1800
 
 #SV-230331, SV-230374
   - name: temp_account_expire_time
@@ -51,211 +234,369 @@ inputs:
 
 #SV-230483, SV-244543
   - name: storage_volume
-    desc:
+    desc: Amount of audit storage volume
     type: Numeric
     value: 80
     profile: redhat-enterprise-linux-8-stig-baseline
 
   - name: storage_space_left
-    desc:
+    desc: Amount of audit storage volume left
     type: Numeric
     value: 20
     profile: redhat-enterprise-linux-8-stig-baseline
 
-#MODERATE ONLY - change to 3 for high
 #SV-230332, SV-230333, SV-230334, SV-230335, SV-230336, SV-230337, SV-230338, SV-230340, SV-230341, SV-230344, SV-230345, 
   - name: unsuccessful_attempts
-    description: Maximum number of unsuccessful attempts before lockout
+    desc: Maximum number of unsuccessful attempts before lockout
     profile: redhat-enterprise-linux-8-stig-baseline
     type: Numeric
-    <% if ENV['BASELINE'] == 'High' %>
-      value: 3
-    <% else %>
-      value: 5 
+    <% if ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'] == 'Moderate-HVA' || ENV['BASELINE'] == 'Low' || ENV['BASELINE'] == 'Low-HVA' %>
+      value: 5
 
-  - name: fail_interval_time #also added to SV-230535
-    description: Interval of time in which the consecutive failed logon attempts must occur in order for the account to be locked out
-    type: Hash
-    value: 
-      minutes: 120
-      seconds: 7200
+  - name: fail_interval # also in SV-230535 
+    desc: Interval of time in which the consecutive failed logon attempts must occur in order for the account to be locked out (time in seconds)
+    type: Numeric
+    value: 7200
     profile: redhat-enterprise-linux-8-stig-baseline
 
-  - name: overlay_controls
-    desc: 'List of inapplicable controls in ARS 5.0 based on the system categorization'
-    type: Array
-<% if ENV['BASELINE'] == 'High-HVA' %>
-    value: [] 
-<% elsif ENV['BASELINE'] == 'High' %>
-    value: []
-<% elsif ENV['BASELINE'] == 'Moderate-HVA' %>
-    value: 
-      - "SV-230346" # AC-10
-      - "SV-230483" # AU-5 (1)
-      - "SV-244543" # AU-5 (1)
-      - "SV-230296" # IA-2 (5)
-      - "SV-230282" # SI-6 a
-<% elsif ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'].nil? %> # Default
-    value:
-      - "SV-230240" # SC-3
-      - "SV-230241" # SC-3
-      - "SV-230277" # SC-3
-      - "SV-230278" # SC-3
-      - "SV-230279" # SC-3
-      - "SV-230282" # SI-2 (6)
-      - "SV-230296" # IA-2 (5)
-      - "SV-230346" # AC-10
-      - "SV-230475" # AU-9 (3)
-      - "SV-230483" # AU-5 (1)
-      - "SV-244543" # AU-5 (1)
-<% elsif ENV['BASELINE'] == 'Low-HVA' %>
-    value:
-      - "SV-230346" # AC-10
-      - "SV-230347" # AC-11
-      - "SV-230348" # AC-11
-      - "SV-230349" # AC-11
-      - "SV-230350" # AC-11
-      - "SV-230351" # AC-11
-      - "SV-230352" # AC-11
-      - "SV-230353" # AC-11
-      - "SV-230354" # AC-11
-      - "SV-230535" # AC-11
-      - "SV-230537" # AC-11
-      - "SV-230538" # AC-11
-      - "SV-230539" # AC-11
-      - "SV-230228" # AC-17 (1)
-      - "SV-230504" # AC-17 (1)
-      - "SV-230505" # AC-17 (1)
-      - "SV-244544" # AC-17 (1)
-      - "SV-230506" # AC-18 (1)
-      - "SV-230507" # AC-18 (1)
-      - "SV-230483" # AU-5 (1)
-      - "SV-244543" # AU-5 (1)
-      - "SV-230508" # CM-7 (2)
-      - "SV-230509" # CM-7 (2)
-      - "SV-230510" # CM-7 (2)
-      - "SV-230511" # CM-7 (2)
-      - "SV-230512" # CM-7 (2)
-      - "SV-230513" # CM-7 (2)
-      - "SV-230514" # CM-7 (2)
-      - "SV-230515" # CM-7 (2)
-      - "SV-230516" # CM-7 (2)
-      - "SV-230517" # CM-7 (2)
-      - "SV-230518" # CM-7 (2)
-      - "SV-230519" # CM-7 (2)
-      - "SV-230520" # CM-7 (2)
-      - "SV-230521" # CM-7 (2)
-      - "SV-230522" # CM-7 (2)
-      - "SV-230523" # CM-7 (2)
-      - "SV-230545" # CM-7 (2)
-      - "SV-230546" # CM-7 (2)
-      - "SV-230296" # IA-2 (5)
-      - "SV-230229" # IA-5 (2)
-      - "SV-230230" # IA-5 (2)
-      - "SV-230355" # IA-5 (2)
-      - "SV-230242" # SC-4
-      - "SV-230243" # SC-4
-      - "SV-230269" # SC-4
-      - "SV-230270" # SC-4
-      - "SV-230244" # SC-10
-      - "SV-244525" # SC-10
-      - "SV-244540" # SI-2 (2)
-      - "SV-230282" # SI-6
-      - "SV-230245" # SI-11
-      - "SV-230246" # SI-11
-      - "SV-230247" # SI-11
-      - "SV-230248" # SI-11
-      - "SV-230249" # SI-11
-      - "SV-230250" # SI-11
-      - "SV-230276" # SI-16
-      - "SV-230280" # SI-16
+  - name: fail_interval_mins # also in SV-230535
+    desc: Interval of time in which the consecutive failed logon attempts must occur in order for the account to be locked out (time in minutes)
+    type: Numeric
+    value: 120
+    profile: redhat-enterprise-linux-8-stig-baseline
 
-<% elsif ENV['BASELINE'] == 'Low' %> 
+  - name: unlock_time
+    desc: Amount of time it will take for an account to be unlocked
+    type: Numeric
+    value: 3600
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: lockout_time
+    desc: Minimum amount of time account must be locked out after failed logins. This attribute should never be set greater than 604800 (time in seconds).
+    type: Numeric
+     <% if ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'] == 'Moderate-HVA'
+      value: 3600 #60 minutes == 3600 seconds
+    <% elsif ENV['BASELINE'] == 'Low' || ENV['BASELINE'] == 'Low-HVA'
+      value: 900 #15 minutes == 900 seconds
+
+  #SV-230356
+  - name: max_retry
+    desc: Maximum number of retry attempts for login
+    type: Numeric
+    value: 3
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  #SV-230363
+  - name: difok
+    desc: Minimum number of characters that must be different from previous password
+    type: Numeric
+    value: 12
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  # SV-230368
+  - name: min_reuse_generations
+    desc: Number of reuse generations
+    type: Numeric
+    profile: redhat-enterprise-linux-8-stig-baseline
+    <% if ENV['BASELINE'] == 'High' || ENV['BASELINE'] == 'High-HVA'
+      value: 12
+    <% else %> #if baseline = mod, mod-hva, low, or low-hva
+      value: 6
+
+  # SV-230369, SV-230370
+  - name: min_len
+    desc: Minimum number of characters for a new password
+    type: Numeric
+    value: 15
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: disable_slow_controls
+    desc: Controls that are known to consistently have long run times can be disabled with this attribute
+    type: Boolean
+    value: false
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  #SV-230548
+  - name: container_host
+    desc: Flag to designate if the target is a container host
+    type: Boolean
+    value: false
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  # SV-230234
+  - name: grub_uefi_main_cfg
+    desc: Main grub boot config file
+    type: String
+    value: "/boot/efi/EFI/redhat/grub.cfg"
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: grub_uefi_user_boot_files
+    desc: Grub boot config files
+    type: Array
+    value: ["/boot/efi/EFI/redhat/user.cfg"]
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  # SV-230317, SV-230321, SV-230322, SV-230325, SV-230328, SV-230309, SV-230320
+  - name: exempt_home_users
+    desc: Users exempt from home directory-based controls in array format
+    type: Array
+    value: ["vagrant"]
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: non_interactive_shells
+    desc: These shells do not allow a user to login
+    type: Array
     value:
-      - "SV-230331" # AC-2 (2)
-      - "SV-230374" # AC-2 (2)
-      - "SV-237642" # AC-6 (5)
-      - "SV-230346" # AC-10
-      - "SV-230347" # AC-11
-      - "SV-230348" # AC-11
-      - "SV-230349" # AC-11
-      - "SV-230350" # AC-11
-      - "SV-230351" # AC-11
-      - "SV-230352" # AC-11
-      - "SV-230353" # AC-11
-      - "SV-230354" # AC-11
-      - "SV-230535" # AC-11
-      - "SV-230537" # AC-11
-      - "SV-230538" # AC-11
-      - "SV-230539" # AC-11
-      - "SV-230228" # AC-17 (1)
-      - "SV-230504" # AC-17 (1)
-      - "SV-230505" # AC-17 (1)
-      - "SV-244544" # AC-17 (1)
-      - "SV-230223" # AC-17 (2)
-      - "SV-230251" # AC-17 (2)
-      - "SV-230252" # AC-17 (2)
-      - "SV-230254" # AC-17 (2)
-      - "SV-230255" # AC-17 (2)
-      - "SV-230256" # AC-17 (2)
-      - "SV-230257" # AC-17 (2)
-      - "SV-244526" # AC-17 (2)
-      - "SV-230506" # AC-18 (1)
-      - "SV-230507" # AC-18 (1)
-      - "SV-230483" # AU-5 (1)
-      - "SV-244543" # AU-5 (1)
-      - "SV-230475" # AU-9 (3)
-      - "SV-230508" # CM-7 (2)
-      - "SV-230509" # CM-7 (2)
-      - "SV-230510" # CM-7 (2)
-      - "SV-230511" # CM-7 (2)
-      - "SV-230512" # CM-7 (2)
-      - "SV-230513" # CM-7 (2)
-      - "SV-230514" # CM-7 (2)
-      - "SV-230515" # CM-7 (2)
-      - "SV-230516" # CM-7 (2)
-      - "SV-230517" # CM-7 (2)
-      - "SV-230518" # CM-7 (2)
-      - "SV-230519" # CM-7 (2)
-      - "SV-230520" # CM-7 (2)
-      - "SV-230521" # CM-7 (2)
-      - "SV-230522" # CM-7 (2)
-      - "SV-230523" # CM-7 (2)
-      - "SV-230545" # CM-7 (2)
-      - "SV-230546" # CM-7 (2)
-      - "SV-230296" # IA-2 (5)
-      - "SV-230502" # IA-3
-      - "SV-230503" # IA-3
-      - "SV-230524" # IA-3
-      - "SV-244547" # IA-3
-      - "SV-244548" # IA-3
-      - "SV-230229" # IA-5 (2)
-      - "SV-230230" # IA-5 (2)
-      - "SV-230355" # IA-5 (2) 
-      - "SV-230240" # SC-3
-      - "SV-230241" # SC-3
-      - "SV-230277" # SC-3
-      - "SV-230278" # SC-3
-      - "SV-230279" # SC-3
-      - "SV-230242" # SC-4
-      - "SV-230243" # SC-4
-      - "SV-230269" # SC-4
-      - "SV-230270" # SC-4
-      - "SV-230526" # SC-8
-      - "SV-244549" # SC-8
-      - "SV-230244" # SC-10
-      - "SV-244525" # SC-10      
-      - "SV-230224" # SC-28
-      - "SV-244540" # SI-2 (2)
-      - "SV-230282" # SI-6
-      - "SV-230245" # SI-11
-      - "SV-230246" # SI-11
-      - "SV-230247" # SI-11
-      - "SV-230248" # SI-11
-      - "SV-230249" # SI-11
-      - "SV-230250" # SI-11
-      - "SV-230276" # SI-16
-      - "SV-230280" # SI-16
-  <% else %>
-    required: true
+      - "/sbin/nologin"
+      - "/sbin/halt"
+      - "/sbin/shutdown"
+      - "/bin/false"
+      - "/bin/sync"
+      - "/bin/true"
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  # SV-230379
+  - name: known_system_accounts
+    desc: System accounts that support approved system activities.
+    type: Array
+    value:
+      - "root"
+      - "bin"
+      - "daemon"
+      - "adm"
+      - "lp"
+      - "sync"
+      - "shutdown"
+      - "halt"
+      - "mail"
+      - "operator"
+      - "nobody"
+      - "systemd-bus-proxy"
+      - "dbus"
+      - "polkitd"
+      - "postfix"
+      - "sssd"
+      - "chrony"
+      - "systemd-network"
+      - "sshd"
+      - "ntp"
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: user_accounts
+    desc: Accounts of known managed users
+    type: Array
+    value: ["vagrant"]
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  # SV-230379
+  - name: log_pkg_path
+    desc: The path to the logging package
+    type: String
+    value: "/etc/rsyslog.conf"
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  # SV-230235
+  - name: grub_main_cfg
+    desc: Main grub boot config file
+    type: String
+    value: "/boot/grub2/grub.cfg"
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: grub_user_boot_files
+    desc: Grub boot config files
+    type: Array
+    value:
+      - "/boot/grub2/user.cfg"
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  # SV-230537
+  - name: ipv4_enabled
+    desc: Set to 'true' if IPv4 is enabled on the system.
+    type: Boolean
+    value: true
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  # SV-230537
+  - name: ipv6_enabled
+    desc: Set to 'true' if IPv6 is enabled on the system.
+    type: Boolean
+    value: true
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  # SV-230493
+  - name: camera_installed
+    desc: Device or system does not have a camera installed.
+    type: Boolean
+    value: true
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  # SV-230503
+  - name: bluetooth_installed
+    desc: 'Device or operating system has a Bluetooth adapter installed'
+    type: Boolean
+    value: true
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  # SV-230242
+  - name: known_system_accounts
+    desc: System accounts that support approved system activities.
+    type: Array
+    value: 
+      - 'root'
+      - 'bin'
+      - 'daemon'
+      - 'adm'
+      - 'lp'
+      - 'sync'
+      - 'shutdown'
+      - 'halt'
+      - 'mail'
+      - 'operator'
+      - 'nobody'
+      - 'systemd-bus-proxy'
+      - 'dbus'
+      - 'polkitd'
+      - 'postfix'
+      - 'sssd'
+      - 'chrony'
+      - 'systemd-network'
+      - 'sshd'
+      - 'ntp'
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: smart_card_status
+    desc: Smart card status (enabled or disabled)
+    type: String
+    value: 'enabled'
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  # SV-230263
+  - name: file_integrity_tool
+    desc: Name of tool
+    type: String
+    value: 'aide'
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  # SV-230484
+  - name: authoritative_timeserver
+    desc: Timeserver used in /etc/chrony.conf
+    type: String
+    value: 0.us.pool.ntp.mil
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  # SV-230537
+  - name: non_removable_media_fs
+    desc: File systems listed in /etc/fstab which are not removable media devices
+    type: Array
+    value: ["/", "/tmp", "none", "/home"]
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  # SV-230230
+  - name: private_key_files
+    desc: List of full paths to private key files on the system
+    type: Array
+    value: []
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  #SV-230229
+  - name: root_ca_file
+    desc: Path to an accepted trust anchor certificate file (DoD)
+    type: String
+    value: "/etc/sssd/pki/sssd_auth_ca_db.pem"
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  #SV-230373
+  - name: days_of_inactivity
+    desc: Maximum number of days if account inactivity before account lockout
+    type: Numeric
+    value: 35
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: temporary_accounts
+    desc: Temporary user accounts
+    type: Array
+    value: []
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: maxlogins_limit
+    desc: Amount of max logins allowed
+    type: String
+    value: '10'
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: log_directory
+    desc: Documented tally log directory
+    type: String
+    value: '/var/log/faillock'
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: banner_message_text_cli
+    desc: Banner message text for command line interface logins.
+    type: String
+    value: "You are accessing a U.S. Government (USG) Information System (IS) that is \
+    provided for USG-authorized use only. By using this IS (which includes any \
+    device attached to this IS), you consent to the following conditions: -The USG \
+    routinely intercepts and monitors communications on this IS for purposes \
+    including, but not limited to, penetration testing, COMSEC monitoring, network \
+    operations and defense, personnel misconduct (PM), law enforcement (LE), and \
+    counterintelligence (CI) investigations. -At any time, the USG may inspect and \
+    seize data stored on this IS. -Communications using, or data stored on, this \
+    IS are not private, are subject to routine monitoring, interception, and \
+    search, and may be disclosed or used for any USG-authorized purpose. -This IS \
+    includes security measures (e.g., authentication and access controls) to \
+    protect USG interests--not for your personal benefit or privacy. \
+    -Notwithstanding the above, using this IS does not constitute consent to PM, \
+    LE or CI investigative searching or monitoring of the content of privileged \
+    communications, or work product, related to personal representation or \
+    services by attorneys, psychotherapists, or clergy, and their assistants. Such \
+    communications and work product are private and confidential. See User \
+    Agreement for details."
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: banner_message_text_ral
+    desc: Banner message text for remote access logins.
+    type: String
+    value: "You are accessing a U.S. Government (USG) Information System (IS) that is \
+    provided for USG-authorized use only. By using this IS (which includes any \
+    device attached to this IS), you consent to the following conditions: -The USG \
+    routinely intercepts and monitors communications on this IS for purposes \
+    including, but not limited to, penetration testing, COMSEC monitoring, network \
+    operations and defense, personnel misconduct (PM), law enforcement (LE), and \
+    counterintelligence (CI) investigations. -At any time, the USG may inspect and \
+    seize data stored on this IS. -Communications using, or data stored on, this \
+    IS are not private, are subject to routine monitoring, interception, and \
+    search, and may be disclosed or used for any USG-authorized purpose. -This IS \
+    includes security measures (e.g., authentication and access controls) to \
+    protect USG interests--not for your personal benefit or privacy. \
+    -Notwithstanding the above, using this IS does not constitute consent to PM, \
+    LE or CI investigative searching or monitoring of the content of privileged \
+    communications, or work product, related to personal representation or \
+    services by attorneys, psychotherapists, or clergy, and their assistants. Such \
+    communications and work product are private and confidential. See User \
+    Agreement for details."
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: banner_message_text_gui
+    desc: Banner message text for graphical user interface logins.
+    type: String
+    value: "You are accessing a U.S. Government (USG) Information System (IS) that is \
+    provided for USG-authorized use only. By using this IS (which includes any \
+    device attached to this IS), you consent to the following conditions: -The USG \
+    routinely intercepts and monitors communications on this IS for purposes \
+    including, but not limited to, penetration testing, COMSEC monitoring, network \
+    operations and defense, personnel misconduct (PM), law enforcement (LE), and \
+    counterintelligence (CI) investigations. -At any time, the USG may inspect and \
+    seize data stored on this IS. -Communications using, or data stored on, this \
+    IS are not private, are subject to routine monitoring, interception, and \
+    search, and may be disclosed or used for any USG-authorized purpose. -This IS \
+    includes security measures (e.g., authentication and access controls) to \
+    protect USG interests--not for your personal benefit or privacy. \
+    -Notwithstanding the above, using this IS does not constitute consent to PM, \
+    LE or CI investigative searching or monitoring of the content of privileged \
+    communications, or work product, related to personal representation or \
+    services by attorneys, psychotherapists, or clergy, and their assistants. Such \
+    communications and work product are private and confidential. See User \
+    Agreement for details."
+    profile: redhat-enterprise-linux-8-stig-baseline
+    
 <% end %>
