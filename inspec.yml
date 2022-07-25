@@ -274,10 +274,10 @@ inputs:
   - name: lockout_time
     desc: Minimum amount of time account must be locked out after failed logins. This attribute should never be set greater than 604800 (time in seconds).
     type: Numeric
-     <% if ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'] == 'Moderate-HVA'
-      value: 3600 #60 minutes == 3600 seconds
-    <% elsif ENV['BASELINE'] == 'Low' || ENV['BASELINE'] == 'Low-HVA'
-      value: 900 #15 minutes == 900 seconds
+     <% if ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'] == 'Moderate-HVA' %>
+      value: 3600
+    <% elsif ENV['BASELINE'] == 'Low' || ENV['BASELINE'] == 'Low-HVA' %>
+      value: 900
 
   #SV-230356
   - name: max_retry
@@ -298,7 +298,7 @@ inputs:
     desc: Number of reuse generations
     type: Numeric
     profile: redhat-enterprise-linux-8-stig-baseline
-    <% if ENV['BASELINE'] == 'High' || ENV['BASELINE'] == 'High-HVA'
+    <% if ENV['BASELINE'] == 'High' || ENV['BASELINE'] == 'High-HVA' %>
       value: 12
     <% else %> #if baseline = mod, mod-hva, low, or low-hva
       value: 6
@@ -598,5 +598,6 @@ inputs:
     communications and work product are private and confidential. See User \
     Agreement for details."
     profile: redhat-enterprise-linux-8-stig-baseline
-    
+
+<% end %>
 <% end %>
