@@ -19,7 +19,7 @@ inputs:
     type: String
     value: <%= ENV['BASELINE'].nil? ? 'Moderate (Default)' : ENV['BASELINE'] %>
 
-  - name: org_name #could make this into a string since full_form isn't used anywhere
+  - name: org_name 
     desc: "Name of the organization running this profile"
     type: Hash
     value:
@@ -203,6 +203,8 @@ inputs:
         - "SV-230280" # SI-16
     <% else %>
       required: true
+      value: []
+    <% end %>
 
 #SV-230244, SV-244525:
   - name: mins_of_inactivity
@@ -252,6 +254,9 @@ inputs:
     type: Numeric
     <% if ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'] == 'Moderate-HVA' || ENV['BASELINE'] == 'Low' || ENV['BASELINE'] == 'Low-HVA' %>
       value: 5
+    <% else %>
+      value: 3
+    <% end %>
 
   - name: fail_interval # also in SV-230535 
     desc: Interval of time in which the consecutive failed logon attempts must occur in order for the account to be locked out (time in seconds)
@@ -276,8 +281,9 @@ inputs:
     type: Numeric
      <% if ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'] == 'Moderate-HVA' %>
       value: 3600
-    <% elsif ENV['BASELINE'] == 'Low' || ENV['BASELINE'] == 'Low-HVA' %>
+    <% else %>
       value: 900
+    <% end %>
 
   #SV-230356
   - name: max_retry
@@ -302,6 +308,7 @@ inputs:
       value: 12
     <% else %> #if baseline = mod, mod-hva, low, or low-hva
       value: 6
+    <% end %>
 
   # SV-230369, SV-230370
   - name: min_len
@@ -598,6 +605,3 @@ inputs:
     communications and work product are private and confidential. See User \
     Agreement for details."
     profile: redhat-enterprise-linux-8-stig-baseline
-
-<% end %>
-<% end %>
