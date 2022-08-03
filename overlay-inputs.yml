@@ -4,6 +4,8 @@ mins_of_inactivity: 30
 
 system_inactivity_timeout: 1800
 
+client_alive_interval: 1800
+
 temp_account_expire_time: {hours: 24, days: 1}
 
 storage_volume: 80
@@ -12,6 +14,20 @@ storage_space_left: 20
 
 unsuccessful_attempts: {3, 5}
 
-fail_interval_time: {minutes: 120, seconds: 7200 }
+fail_interval: 7200
 
-#do i need to put overlay_controls in here? (the non-apps?)
+fail_interval_mins: 120
+
+unlock_time: 3600
+
+lockout_time: {3600, 900}
+
+max_retry: 3
+
+difok: 12
+
+min_reuse_generations: {12, 6}
+
+min_len: 15
+
+
