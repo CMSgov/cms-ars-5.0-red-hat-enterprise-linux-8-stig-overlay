@@ -304,9 +304,11 @@ inputs:
     desc: Number of reuse generations
     type: Numeric
     profile: redhat-enterprise-linux-8-stig-baseline
-    <% if ENV['BASELINE'] == 'High' || ENV['BASELINE'] == 'High-HVA' || ENV['BASELINE'].nil? %>
+    <% if ENV['BASELINE'] == 'High' || ENV['BASELINE'] == 'High-HVA' %>
     value: 12
-    <% else %> #if baseline = mod, mod-hva, low, or low-hva
+    <% elsif ENV['BASELINE'].nil? %>
+    value: 6
+    <% else %>
     value: 6
     <% end %>
 
