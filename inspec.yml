@@ -10,8 +10,7 @@ inspec_version: ">= 4.0"
 
 depends:
 - name: redhat-enterprise-linux-8-stig-baseline
-  path: /Users/ssayed/redhat8-baseline/redhat-enterprise-linux-8-stig-baseline
-  #url: https://github.com/ssayed118/redhat-enterprise-linux-8-stig-baseline/archive/main.tar.gz
+  url: https://github.com/ssayed118/redhat-enterprise-linux-8-stig-baseline/archive/main.tar.gz
 
 inputs:
   - name: system_categorization

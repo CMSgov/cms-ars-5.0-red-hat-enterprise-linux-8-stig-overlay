@@ -3,7 +3,7 @@ overlay_controls = input('overlay_controls')
 system_categorization = input('system_categorization')
 
 include_controls 'redhat-enterprise-linux-8-stig-baseline' do
-  unless overlay_controls.empty? # Test with !oc.any?
+  unless overlay_controls.empty?
     overlay_controls.each do |overlay_control|
       control overlay_control do
         impact 0.0
