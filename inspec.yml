@@ -303,18 +303,21 @@ inputs:
     desc: Number of reuse generations
     type: Numeric
     profile: redhat-enterprise-linux-8-stig-baseline
-    <% if ENV['BASELINE'] == 'High' || ENV['BASELINE'] == 'High-HVA' %>
+    <% if ENV['BASELINE'] == 'High' %>
     value: 12
-    <% elsif ENV['BASELINE'].nil? %>
+    <% elsif ENV['BASELINE'].nil? || ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'] == 'Low' %>
     value: 6
     <% else %>
-    value: 6
+    value: 0
     <% end %>
 
   # SV-230369, SV-230370
   - name: min_len
     desc: Minimum number of characters for a new password
     type: Numeric
+    <% if ENV['BASELINE'] == 'High-HVA' || ENV['BASELINE'] == 'Moderate-HVA' || ENV['BASELINE'] == 'Low-HVA' %>
+    value: 20
+    <% else %> 
     value: 15
     profile: redhat-enterprise-linux-8-stig-baseline
 
