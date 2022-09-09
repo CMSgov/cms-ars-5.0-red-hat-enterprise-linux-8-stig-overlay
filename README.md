@@ -43,115 +43,193 @@ $env:BASELINE="High"
 The following inputs may be configured in an inputs ".yml" file for the profile to run correctly for your specific environment. More information about InSpec inputs can be found in the [InSpec Profile Documentation](https://www.inspec.io/docs/reference/profiles/).
 
 ```
-
-# Used by InSpec checks V-71849, V-71855, V-72037
-# InSpec Tests that are known to consistently have long run times (V-71849, V-71855, V-72037) can be disabled with this attribute
-# Acceptable values: false, true
-# (default: false)
+# Used by InSpec check SV-230309
+# InSpec Tests that are known to consistently have long run times can be disabled with this attribute
+# Description: Controls that are known to consistently have long run times can be disabled with this attribute
+# Type: Boolean
+# (default value): false
 disable_slow_controls: 
 
-# Used by InSpec check V-71849
-# list of system files that should be allowed to change from an rpm verify point of view
-rpm_verify_perms_except: []
+# Used by InSpec check SV-230548
+# Description: Flag to designate if the target is a container host
+# Type: Boolean
+# (default value): false
+container_host:
 
-# Used by InSpec check V-71855
-# list of system files that should be allowed to change from an rpm verify point of view
-rpm_verify_integrity_except: []
+# Used by InSpec check SV-230234
+# Description: Main grub boot config file
+# Type: String
+# (default value): "/boot/efi/EFI/redhat/grub.cfg"
+grub_uefi_main_cfg:
 
-# Used by InSpec check V-72211 (default: false)
-# Do NOT set to 'true' UNLESS the server is documented as being used as a log aggregation server. 
-log_aggregation_server: false
+# Used by InSpec check SV-230234
+# Description: Grub boot config files
+# Type: Array
+# (default value): ["/boot/efi/EFI/redhat/user.cfg"]
+grub_uefi_user_boot_files: []
 
-# Used by InSpec check V-72047 (default: [])
-# Known application groups that are allowed to have world-writeable files or directories
-application_groups: []
-
-# Used by InSpec check V-72307 (default: false)
-# Do NOT set to 'true' UNLESS use of X Windows System is documented and approved. 
-x11_enabled: false
-
-# Accounts of known managed users (Array)
-user_accounts: []
-
-# System accounts that support approved system activities. (Array) (defaults shown below)
-known_system_accounts:
-  [
-    "root",
-    "bin",
-    "daemon",
-    "adm",
-    "lp",
-    "sync",
-    "shutdown",
-    "halt",
-    "mail",
-    "operator",
-    "nobody",
-    "systemd-bus-proxy",
-  ]
-
-# V-71965, V-72417, V-72433
-# (enabled or disabled)
-smart_card_status: "enabled"
-
-# V-72051/V-72209
-# The path to the logging package
-log_pkg_path: "/etc/rsyslog.conf"
-
-# V-72011, V-72015, V-72017, V-72019, V-72021, V-72023, V-72025
-# V-72027, V-72029, V-72031, V-72033, V-72035, V-72037, V-72059
-# Users exempt from home directory-based controls in array
-# format
+# Used by InSpec check SV-230317, SV-230321, SV-230322, SV-230325, SV-230328, SV-230309, SV-230320
+# Description: Users exempt from home directory-based controls in array format
+# Type: Array
+# (default value): ["vagrant"]
 exempt_home_users: []
 
-# V-71961
-# main grub boot config file
-grub_main_cfg: "/boot/grub2/grub.cfg"
+# Used by InSpec check SV-230317, SV-230321, SV-230322, SV-230325, SV-230328, SV-230309, SV-230320
+# Description: These shells do not allow a user to login
+# Type: Array
+# (default value):
+#      - "/sbin/nologin"
+#      - "/sbin/halt"
+#      - "/sbin/shutdown"
+#      - "/bin/false"
+#      - "/bin/sync"
+#      - "/bin/true"
+non_interactive_shells: []
 
-# superusers for grub boot ( array )
-grub_superusers: ["root"]
+# Used by InSpec check SV-230379
+# Description: System accounts that support approved system activities.
+# Type: Array
+# (default value):
+#      - "root"
+#      - "bin"
+#      - "daemon"
+#      - "adm"
+#      - "lp"
+#      - "sync"
+#      - "shutdown"
+#      - "halt"
+#      - "mail"
+#      - "operator"
+#      - "nobody"
+#      - "systemd-bus-proxy"
+#      - "dbus"
+#      - "polkitd"
+#      - "postfix"
+#      - "sssd"
+#      - "chrony"
+#      - "systemd-network"
+#      - "sshd"
+#      - "ntp"
+known_system_accounts: []
 
-# grub boot config files
-grub_user_boot_files: ["/boot/grub2/user.cfg"]
+# Description: Accounts of known managed users
+# Type: Array
+# (default value): ["vagrant"]
+user_accounts: []
 
-# V-71963
-# superusers for efi boot ( array )
-efi_superusers: ["root"]
+# Used by InSpec check SV-230379
+# Description: The path to the logging package
+# Type: String
+# (default value): "/etc/rsyslog.conf"
+log_pkg_path:
 
-# efi boot config files
-efi_user_boot_files: ["/boot/efi/EFI/redhat/user.cfg"]
+# Used by InSpec check SV-230235
+# Description: Main grub boot config file
+# Type: String
+# (default value): "/boot/grub2/grub.cfg"
+grub_main_cfg: 
 
-# main efi boot config file
-efi_main_cfg: "/boot/efi/EFI/redhat/grub.cfg"
+# Description: Grub boot config files
+# Type: Array
+# (default value):["/boot/grub2/user.cfg"]
+grub_user_boot_files: []
 
-# V-71971
-# system accounts that support approved system activities
-admin_logins: []
+# Used by InSpec check SV-230537
+# Description: Set to 'true' if IPv4 is enabled on the system.
+# Type: Boolean
+# (default value): true
+ipv4_enabled:
 
-# V-77819
-# should dconf have smart card authentication (e.g., true or false <- no quotes!)
-multifactor_enabled: true
+# Used by InSpec check SV-230537
+# Description: Set to 'true' if IPv6 is enabled on the system.
+# Type: Boolean
+# (default value): true
+ipv6_enabled:
 
-# V-72317
-# approved configured tunnels prepended with word 'conn'
-# Example: ['conn myTunnel']
-approved_tunnels: []
+# Used by InSpec check SV-230493
+# Description: Device or system does not have a camera installed.
+# Type: Boolean
+# (default value): true
+camera_installed:
 
-# V-72039
-# Is the target expected to be a virtual machine
-virtual_machine: false
+# Used by InSpec check SV-230503
+# Description: 'Device or operating system has a Bluetooth adapter installed'
+# Type: Boolean
+# (default value): true
+bluetooth_installed:
+
+# Used by InSpec check SV-230242
+# Description: System accounts that support approved system activities.
+# Type: Array
+# (default value): 
+#      - 'root'
+#      - 'bin'
+#      - 'daemon'
+#      - 'adm'
+#      - 'lp'
+#      - 'sync'
+#      - 'shutdown'
+#      - 'halt'
+#      - 'mail'
+#      - 'operator'
+#      - 'nobody'
+#      - 'systemd-bus-proxy'
+#      - 'dbus'
+#      - 'polkitd'
+#      - 'postfix'
+#      - 'sssd'
+#      - 'chrony'
+#      - 'systemd-network'
+#      - 'sshd'
+#      - 'ntp'
+known_system_accounts: []
+
+# Description: Smart card status (enabled or disabled)
+# Type: String
+# (default value): 'enabled'
+smart_card_status: 
+
+# Used by InSpec check SV-230263
+# Description: Name of integrity checking tool
+# Type: String
+# (default value): 'aide'
+file_integrity_tool: 
+
+# Used by InSpec check SV-230484
+# Description: Timeserver used in /etc/chrony.conf
+# Type: String
+# (default value): 0.us.pool.ntp.mil
+authoritative_timeserver: 
+
+# Used by InSpec check SV-230537
+# Description: File systems listed in /etc/fstab which are not removable media devices
+# Type: Array
+# (default value): ["/", "/tmp", "none", "/home"]
+non_removable_media_fs: []
+
+# Used by InSpec check SV-230230
+# Description: List of full paths to private key files on the system
+# Type: Array
+# (default value): []
+private_key_files: []
+
+# Used by InSpec check SV-230229
+# Description: Path to an accepted trust anchor certificate file (DoD)
+# Type: String
+# (default value): "/etc/sssd/pki/sssd_auth_ca_db.pem"
+root_ca_file: 
+
+# Description: Temporary user accounts
+# Type: Array
+# (default value): []
+temporary_accounts: []
+
+# Description: Documented tally log directory
+# Type: String
+# (default value): '/var/log/faillock'
+log_directory: 
 
 ```
-## Long Running Controls
-
-There are a few long running controls that take anywhere from 3 minutes to 10 minutes or more to run. In an ongoing or CI/CD pipelne this may not be ideal. We have supplied an 
-input (mentioned above in the user-defined inputs) in the profile to allow you to 'skip' these controls to account for these situations.
-
-The input `disable_slow_controls (bool: false)` can be set to `true` or `false` as needed in a <name_of_your_input_file>.yml file.
-
-* `V-71849` (~3 minutes)
-* `V-71855` (~3 minutes)
-* `V-72037` (10+ minutes)
 
 ## Running This Overlay Directly from Github
 
