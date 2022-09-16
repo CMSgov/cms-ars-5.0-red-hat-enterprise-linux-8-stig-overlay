@@ -29,7 +29,7 @@ Latest versions and other installation options are available at https://cinc.sh/
 ## Specify your BASELINE system categization as an environment variable:
 
 ```
-# BASELINE (choices: Low, Moderate, High)
+# BASELINE (choices: Low, Low-HVA, Moderate, Moderate-HVA, High, High-HVA)
 
 on linux:
 BASELINE=High
