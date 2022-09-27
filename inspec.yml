@@ -206,23 +206,18 @@ inputs:
     <% end %>
 
 #SV-230244, SV-244525:
-  - name: mins_of_inactivity
-    desc: Maximum number of minutes of account inactivity before account lockout
+  - name: client_alive_interval 
+    desc: Interval of network connections associated with SSH 
     type: Numeric
-    value: 30
+    value: 1800
     profile: redhat-enterprise-linux-8-stig-baseline
 
+#SV-230353    
   - name: system_inactivity_timeout
     desc: Maximum system inactivity timeout (time in seconds).
     type: Numeric
     value: 1800
     profile: redhat-enterprise-linux-8-stig-baseline
-
-#SV-230244
-  - name: client_alive_interval 
-    desc:
-    type: Numeric
-    value: 1800
 
 #SV-230331, SV-230374
   - name: temp_account_expire_time
