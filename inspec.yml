@@ -514,6 +514,7 @@ inputs:
     value: []
     profile: redhat-enterprise-linux-8-stig-baseline
 
+  #SV-230346
   - name: maxlogins_limit
     desc: Amount of max logins allowed
     type: String
