@@ -252,22 +252,10 @@ inputs:
     value: 3
     <% end %>
 
-  - name: fail_interval # also in SV-230535 
+  - name: fail_interval 
     desc: Interval of time in which the consecutive failed logon attempts must occur in order for the account to be locked out (time in seconds)
     type: Numeric
     value: 7200
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  - name: fail_interval_mins # also in SV-230535
-    desc: Interval of time in which the consecutive failed logon attempts must occur in order for the account to be locked out (time in minutes)
-    type: Numeric
-    value: 120
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  - name: unlock_time
-    desc: Amount of time it will take for an account to be unlocked
-    type: Numeric
-    value: 3600
     profile: redhat-enterprise-linux-8-stig-baseline
 
   - name: lockout_time
