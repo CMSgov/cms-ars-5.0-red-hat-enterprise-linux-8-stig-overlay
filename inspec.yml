@@ -269,13 +269,6 @@ inputs:
     value: 900
     <% end %>
 
-#SV-230356
-#  - name: max_retry
-#    desc: Maximum number of retry attempts for login
-#    type: Numeric
-#    value: 3
-#    profile: redhat-enterprise-linux-8-stig-baseline
-
 #SV-230363
   - name: difok
     desc: Minimum number of characters that must be different from previous password
@@ -306,212 +299,11 @@ inputs:
     value: 15
     profile: redhat-enterprise-linux-8-stig-baseline
 
-  - name: disable_slow_controls
-    desc: Controls that are known to consistently have long run times can be disabled with this attribute
-    type: Boolean
-    value: false
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  #SV-230548
-  - name: container_host
-    desc: Flag to designate if the target is a container host
-    type: Boolean
-    value: false
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  # SV-230234
-  - name: grub_uefi_main_cfg
-    desc: Main grub boot config file
-    type: String
-    value: "/boot/efi/EFI/redhat/grub.cfg"
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  - name: grub_uefi_user_boot_files
-    desc: Grub boot config files
-    type: Array
-    value: ["/boot/efi/EFI/redhat/user.cfg"]
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  # SV-230317, SV-230321, SV-230322, SV-230325, SV-230328, SV-230309, SV-230320
-  - name: exempt_home_users
-    desc: Users exempt from home directory-based controls in array format
-    type: Array
-    value: ["vagrant"]
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  - name: non_interactive_shells
-    desc: These shells do not allow a user to login
-    type: Array
-    value:
-      - "/sbin/nologin"
-      - "/sbin/halt"
-      - "/sbin/shutdown"
-      - "/bin/false"
-      - "/bin/sync"
-      - "/bin/true"
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  # SV-230379
-  - name: known_system_accounts
-    desc: System accounts that support approved system activities.
-    type: Array
-    value:
-      - "root"
-      - "bin"
-      - "daemon"
-      - "adm"
-      - "lp"
-      - "sync"
-      - "shutdown"
-      - "halt"
-      - "mail"
-      - "operator"
-      - "nobody"
-      - "systemd-bus-proxy"
-      - "dbus"
-      - "polkitd"
-      - "postfix"
-      - "sssd"
-      - "chrony"
-      - "systemd-network"
-      - "sshd"
-      - "ntp"
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  - name: user_accounts
-    desc: Accounts of known managed users
-    type: Array
-    value: ["vagrant"]
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  # SV-230379
-  - name: log_pkg_path
-    desc: The path to the logging package
-    type: String
-    value: "/etc/rsyslog.conf"
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  # SV-230235
-  - name: grub_main_cfg
-    desc: Main grub boot config file
-    type: String
-    value: "/boot/grub2/grub.cfg"
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  - name: grub_user_boot_files
-    desc: Grub boot config files
-    type: Array
-    value:
-      - "/boot/grub2/user.cfg"
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  # SV-230537
-  - name: ipv4_enabled
-    desc: Set to 'true' if IPv4 is enabled on the system.
-    type: Boolean
-    value: true
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  # SV-230537
-  - name: ipv6_enabled
-    desc: Set to 'true' if IPv6 is enabled on the system.
-    type: Boolean
-    value: true
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  # SV-230493
-  - name: camera_installed
-    desc: Device or system does not have a camera installed.
-    type: Boolean
-    value: true
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  # SV-230503
-  - name: bluetooth_installed
-    desc: 'Device or operating system has a Bluetooth adapter installed'
-    type: Boolean
-    value: true
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  # SV-230242
-  - name: known_system_accounts
-    desc: System accounts that support approved system activities.
-    type: Array
-    value: 
-      - 'root'
-      - 'bin'
-      - 'daemon'
-      - 'adm'
-      - 'lp'
-      - 'sync'
-      - 'shutdown'
-      - 'halt'
-      - 'mail'
-      - 'operator'
-      - 'nobody'
-      - 'systemd-bus-proxy'
-      - 'dbus'
-      - 'polkitd'
-      - 'postfix'
-      - 'sssd'
-      - 'chrony'
-      - 'systemd-network'
-      - 'sshd'
-      - 'ntp'
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  - name: smart_card_status
-    desc: Smart card status (enabled or disabled)
-    type: String
-    value: 'enabled'
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  # SV-230263
-  - name: file_integrity_tool
-    desc: Name of tool
-    type: String
-    value: 'aide'
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  # SV-230484
-  - name: authoritative_timeserver
-    desc: Timeserver used in /etc/chrony.conf
-    type: String
-    value: 0.us.pool.ntp.mil
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  # SV-230537
-  - name: non_removable_media_fs
-    desc: File systems listed in /etc/fstab which are not removable media devices
-    type: Array
-    value: ["/", "/tmp", "none", "/home"]
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  # SV-230230
-  - name: private_key_files
-    desc: List of full paths to private key files on the system
-    type: Array
-    value: []
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  #SV-230229
-  - name: root_ca_file
-    desc: Path to an accepted trust anchor certificate file (DoD)
-    type: String
-    value: "/etc/sssd/pki/sssd_auth_ca_db.pem"
-    profile: redhat-enterprise-linux-8-stig-baseline
-
   #SV-230373
   - name: days_of_inactivity
     desc: Maximum number of days if account inactivity before account lockout
     type: Numeric
     value: 35
-    profile: redhat-enterprise-linux-8-stig-baseline
-
-  - name: temporary_accounts
-    desc: Temporary user accounts
-    type: Array
-    value: []
     profile: redhat-enterprise-linux-8-stig-baseline
 
   #SV-230346
@@ -521,44 +313,38 @@ inputs:
     value: '10'
     profile: redhat-enterprise-linux-8-stig-baseline
 
-  - name: log_directory
-    desc: Documented tally log directory
-    type: String
-    value: '/var/log/faillock'
+  - name: banner_message_text_gui
+    description: The banner message text for GUI logins.
+    type: string
+    value: "* This warning banner provides privacy and security notices consistent with applicable federal laws, directives, and other federal guidance for accessing this Government system, which includes (1) this computer network, (2) all computers connected to this network, and (3) all devices and storage media attached to this network or to a computer on this network.
+  * This system is provided for Government authorized use only.
+  * Unauthorized or improper use of this system is prohibited and may result in disciplinary action and/or civil and criminal penalties.
+  * Personal use of social media and networking sites on this system is limited as to not interfere with official work duties and is subject to monitoring.
+  * By using this system, you understand and consent to the following:
+  - The Government may monitor, record, and audit your system usage, including usage of personal devices and email systems for official duties or to conduct HHS business. Therefore, you have no reasonable expectation of privacy regarding any communication or data transiting or stored on this system. At any time, and for any lawful Government purpose, the government may monitor, intercept, and search and seize any communication or data transiting or stored on this system.
+  - Any communication or data transiting or stored on this system may be disclosed or used for any lawful Government purpose"
     profile: redhat-enterprise-linux-8-stig-baseline
 
-- name: banner_message_text_gui
-  description: The banner message text for GUI logins.
-  type: string
-  value: "* This warning banner provides privacy and security notices consistent with applicable federal laws, directives, and other federal guidance for accessing this Government system, which includes (1) this computer network, (2) all computers connected to this network, and (3) all devices and storage media attached to this network or to a computer on this network.
-* This system is provided for Government authorized use only.
-* Unauthorized or improper use of this system is prohibited and may result in disciplinary action and/or civil and criminal penalties.
-* Personal use of social media and networking sites on this system is limited as to not interfere with official work duties and is subject to monitoring.
-* By using this system, you understand and consent to the following:
-- The Government may monitor, record, and audit your system usage, including usage of personal devices and email systems for official duties or to conduct HHS business. Therefore, you have no reasonable expectation of privacy regarding any communication or data transiting or stored on this system. At any time, and for any lawful Government purpose, the government may monitor, intercept, and search and seize any communication or data transiting or stored on this system.
-- Any communication or data transiting or stored on this system may be disclosed or used for any lawful Government purpose"
-  profile: redhat-enterprise-linux-8-stig-baseline
+  - name: banner_message_text_cli
+    description: The bannermessage text for command line interface logins.
+    type: string
+    value: "* This warning banner provides privacy and security notices consistent with applicable federal laws, directives, and other federal guidance for accessing this Government system, which includes (1) this computer network, (2) all computers connected to this network, and (3) all devices and storage media attached to this network or to a computer on this network.
+  * This system is provided for Government authorized use only.
+  * Unauthorized or improper use of this system is prohibited and may result in disciplinary action and/or civil and criminal penalties.
+  * Personal use of social media and networking sites on this system is limited as to not interfere with official work duties and is subject to monitoring.
+  * By using this system, you understand and consent to the following:
+  - The Government may monitor, record, and audit your system usage, including usage of personal devices and email systems for official duties or to conduct HHS business. Therefore, you have no reasonable expectation of privacy regarding any communication or data transiting or stored on this system. At any time, and for any lawful Government purpose, the government may monitor, intercept, and search and seize any communication or data transiting or stored on this system.
+  - Any communication or data transiting or stored on this system may be disclosed or used for any lawful Government purpose"
+    profile: redhat-enterprise-linux-8-stig-baseline
 
-- name: banner_message_text_cli
-  description: The bannermessage text for command line interface logins.
-  type: string
-  value: "* This warning banner provides privacy and security notices consistent with applicable federal laws, directives, and other federal guidance for accessing this Government system, which includes (1) this computer network, (2) all computers connected to this network, and (3) all devices and storage media attached to this network or to a computer on this network.
-* This system is provided for Government authorized use only.
-* Unauthorized or improper use of this system is prohibited and may result in disciplinary action and/or civil and criminal penalties.
-* Personal use of social media and networking sites on this system is limited as to not interfere with official work duties and is subject to monitoring.
-* By using this system, you understand and consent to the following:
-- The Government may monitor, record, and audit your system usage, including usage of personal devices and email systems for official duties or to conduct HHS business. Therefore, you have no reasonable expectation of privacy regarding any communication or data transiting or stored on this system. At any time, and for any lawful Government purpose, the government may monitor, intercept, and search and seize any communication or data transiting or stored on this system.
-- Any communication or data transiting or stored on this system may be disclosed or used for any lawful Government purpose"
-  profile: redhat-enterprise-linux-8-stig-baseline
-
-- name: banner_message_text_ral
-  description: The banner message text for remote access logins.
-  type: string
-  value: "* This warning banner provides privacy and security notices consistent with applicable federal laws, directives, and other federal guidance for accessing this Government system, which includes (1) this computer network, (2) all computers connected to this network, and (3) all devices and storage media attached to this network or to a computer on this network.
-* This system is provided for Government authorized use only.
-* Unauthorized or improper use of this system is prohibited and may result in disciplinary action and/or civil and criminal penalties.
-* Personal use of social media and networking sites on this system is limited as to not interfere with official work duties and is subject to monitoring.
-* By using this system, you understand and consent to the following:
-- The Government may monitor, record, and audit your system usage, including usage of personal devices and email systems for official duties or to conduct HHS business. Therefore, you have no reasonable expectation of privacy regarding any communication or data transiting or stored on this system. At any time, and for any lawful Government purpose, the government may monitor, intercept, and search and seize any communication or data transiting or stored on this system.
-- Any communication or data transiting or stored on this system may be disclosed or used for any lawful Government purpose"
-  profile: redhat-enterprise-linux-8-stig-baseline
+  - name: banner_message_text_ral
+    description: The banner message text for remote access logins.
+    type: string
+    value: "* This warning banner provides privacy and security notices consistent with applicable federal laws, directives, and other federal guidance for accessing this Government system, which includes (1) this computer network, (2) all computers connected to this network, and (3) all devices and storage media attached to this network or to a computer on this network.
+  * This system is provided for Government authorized use only.
+  * Unauthorized or improper use of this system is prohibited and may result in disciplinary action and/or civil and criminal penalties.
+  * Personal use of social media and networking sites on this system is limited as to not interfere with official work duties and is subject to monitoring.
+  * By using this system, you understand and consent to the following:
+  - The Government may monitor, record, and audit your system usage, including usage of personal devices and email systems for official duties or to conduct HHS business. Therefore, you have no reasonable expectation of privacy regarding any communication or data transiting or stored on this system. At any time, and for any lawful Government purpose, the government may monitor, intercept, and search and seize any communication or data transiting or stored on this system.
+  - Any communication or data transiting or stored on this system may be disclosed or used for any lawful Government purpose"
+    profile: redhat-enterprise-linux-8-stig-baseline
