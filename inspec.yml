@@ -269,21 +269,21 @@ inputs:
     value: 900
     <% end %>
 
-  #SV-230356
-  - name: max_retry
-    desc: Maximum number of retry attempts for login
-    type: Numeric
-    value: 3
-    profile: redhat-enterprise-linux-8-stig-baseline
+#SV-230356
+#  - name: max_retry
+#    desc: Maximum number of retry attempts for login
+#    type: Numeric
+#    value: 3
+#    profile: redhat-enterprise-linux-8-stig-baseline
 
-  #SV-230363
+#SV-230363
   - name: difok
     desc: Minimum number of characters that must be different from previous password
     type: Numeric
     value: 12
     profile: redhat-enterprise-linux-8-stig-baseline
 
-  # SV-230368
+#SV-230368
   - name: min_reuse_generations
     desc: Number of reuse generations
     type: Numeric
@@ -296,7 +296,7 @@ inputs:
     value: 0
     <% end %>
 
-  # SV-230369, SV-230370
+# SV-230369, SV-230370
   - name: min_len
     desc: Minimum number of characters for a new password
     type: Numeric
