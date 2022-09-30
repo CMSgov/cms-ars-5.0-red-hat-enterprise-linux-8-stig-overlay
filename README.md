@@ -281,34 +281,27 @@ The JSON results output file can be loaded into __[heimdall-lite](https://heimda
 The JSON InSpec results file may also be loaded into a __[full heimdall server](https://github.com/mitre/heimdall2)__, allowing for additional functionality such as to store and compare multiple profile runs.
 
 ## Authors
-* Eugene Aronne
-* Danny Haynes
-* Mohamed El-Sharkawi
+* Sumaa Sayed
+* Shivani Karikar
 
 ## Special Thanks
-* The SIMP Project Team
-* Aaron Lippold
-* Sam Cornwell
+* Eugene Aronne
+* Will Dower
 
 ## Contributing and Getting Help
 To report a bug or feature request, please open an [issue](https://github.com/CMSgov/cms-ars-5.0-red-hat-enterprise-linux-8-stig-overlay/issues/new).
 
 ### NOTICE
-
-© 2020 The MITRE Corporation.
+© 2022 The MITRE Corporation.
 
 Approved for Public Release; Distribution Unlimited. Case Number 18-3678.
 
-### NOTICE
-MITRE hereby grants express written permission to use, reproduce, distribute, modify, and otherwise leverage this software to the extent permitted by the licensed terms provided in the LICENSE.md file included with this project.
+### NOTICE 
 
-### NOTICE  
+MITRE grants permission to reproduce, distribute, modify, and otherwise use this software to the extent permitted by the licensed terms provided in the LICENSE.md file included with this project.
+ 
+This software was produced by The MITRE Corporation for the U. S. Government under contract. As such the U.S. Government has certain use and data rights in this software. No use other than those granted to the U. S. Government, or to those acting on behalf of the U. S. Government, under these contract arrangements is authorized without the express written permission of The MITRE Corporation.
+ 
+For further information, please contact The MITRE Corporation, Contracts Management Office, 7515 Colshire Drive, McLean, VA 22102-7539, (703) 983-6000.
 
-This software was produced for the U. S. Government under Contract Number HHSM-500-2012-00008I, and is subject to Federal Acquisition Regulation Clause 52.227-14, Rights in Data-General.  
-
-No other use other than that granted to the U. S. Government, or to those acting on behalf of the U. S. Government under that Clause is authorized without the express written permission of The MITRE Corporation.
-
-For further information, please contact The MITRE Corporation, Contracts Management Office, 7515 Colshire Drive, McLean, VA  22102-7539, (703) 983-6000.
-
-### NOTICE
-DISA STIGs are published by DISA IASE, see: https://iase.disa.mil/Pages/privacy_policy.aspx
+DISA STIGs are published at: https://public.cyber.mil/stigs/
