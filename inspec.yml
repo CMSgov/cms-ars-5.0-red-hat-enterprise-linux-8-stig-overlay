@@ -290,7 +290,7 @@ inputs:
     type: Numeric
     <% if ENV['BASELINE'] == 'High' || ENV['BASELINE'] == 'High-HVA' %>
     value: 0
-    <% elseif ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'] == 'Moderate-HVA' || ENV['BASELINE'].nil? %>
+    <% elsif ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'] == 'Moderate-HVA' || ENV['BASELINE'].nil? %>
     value: 3600
     <% else %>
     value: 900
