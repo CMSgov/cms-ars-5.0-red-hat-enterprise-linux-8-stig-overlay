@@ -288,9 +288,9 @@ inputs:
   - name: lockout_time
     desc: Minimum amount of time account must be locked out after failed logins. This attribute should never be set greater than 604800 (time in seconds). ("0" or "never" locks until released by an administrator)
     type: Numeric
-     <% if ENV['BASELINE'] == 'High' || ENV['BASELINE'] == 'High-HVA' %>
+    <% if ENV['BASELINE'] == 'High' || ENV['BASELINE'] == 'High-HVA' %>
     value: 0
-     <% elseif ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'] == 'Moderate-HVA' || ENV['BASELINE'].nil? %>
+    <% elseif ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'] == 'Moderate-HVA' || ENV['BASELINE'].nil? %>
     value: 3600
     <% else %>
     value: 900
