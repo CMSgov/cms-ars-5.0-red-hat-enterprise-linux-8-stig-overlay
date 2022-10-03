@@ -252,18 +252,38 @@ inputs:
   - name: temp_account_expire_time
     desc: Temporary (short term) should be set with an expiration date/time
     type: Hash
+    <% if ENV['BASELINE'] == 'High-HVA' || ENV['BASELINE'] == 'Moderate-HVA' %>
     value: 
-      hours: 24
-      days: 1
+      hours: 12
+      days: 0.5
+    <% elsif ENV['BASELINE'] == 'High' %>
+    value: 
+      hours: 720
+      days: 30
+    <% elsif ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'].nil? %>
+    value: 
+      hours: 1440
+      days: 60
+    <% end %>
     profile: redhat-enterprise-linux-8-stig-baseline
     
 #SV-230374  
   - name: emergency_account_expire_time
     desc: Emergency (short term) should be set with an expiration date/time
     type: Hash
+    <% if ENV['BASELINE'] == 'High-HVA' || ENV['BASELINE'] == 'Moderate-HVA' %>
+    value: 
+      hours: 12
+      days: 0.5
+    <% elsif ENV['BASELINE'] == 'High' %>
     value: 
       hours: 24
-      days: 1      
+      days: 1
+    <% elsif ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'].nil? %>
+    value: 
+      hours: 24
+      days: 1
+    <% end %>   
     profile: redhat-enterprise-linux-8-stig-baseline
 
 #SV-230483, SV-244543
