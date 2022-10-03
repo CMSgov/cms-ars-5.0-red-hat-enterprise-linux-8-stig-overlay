@@ -135,6 +135,7 @@ inputs:
       - "SV-230359" # IA-5 (1) a
       - "SV-230362" # IA-5 (1) b
       - "SV-230375" # IA-5 (1) a
+      - "SV-230373" # AC-2 (3)
     <% elsif ENV['BASELINE'] == 'Low' %> 
     value:
       - "SV-230331" # AC-2 (2)
@@ -227,6 +228,7 @@ inputs:
       - "SV-230367" # IA-5 (1) d
       - "SV-230362" # IA-5 (1) b
       - "SV-230375" # IA-5 (1) a
+      - "SV-230373" # AC-2 (3)
     <% else %>
     required: true
     value: []
@@ -345,8 +347,13 @@ inputs:
   - name: days_of_inactivity
     desc: Maximum number of days if account inactivity before account lockout
     type: Numeric
-    value: 35
     profile: redhat-enterprise-linux-8-stig-baseline
+    <% if ENV['BASELINE'] == 'High-HVA' || ENV['BASELINE'] == 'High' %>
+    value: 30
+    <% elsif ENV['BASELINE'].nil? || ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'] == 'Moderate-HVA' %>
+    value: 60
+
+    
 
   #SV-230346
   - name: maxlogins_limit
