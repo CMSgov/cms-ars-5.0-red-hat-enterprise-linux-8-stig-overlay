@@ -232,18 +232,18 @@ inputs:
     value: []
     <% end %>
 
-#SV-230244, SV-244525:
+#SV-230244, SV-244525, based on SC-10
   - name: client_alive_interval 
     desc: Interval of network connections associated with SSH 
     type: Numeric
     value: 1800
     profile: redhat-enterprise-linux-8-stig-baseline
 
-#SV-230353    
+#SV-230352, SV-230353 based on AC-11    
   - name: system_inactivity_timeout
     desc: Maximum system inactivity timeout (time in seconds).
     type: Numeric
-    value: 1800
+    value: 900
     profile: redhat-enterprise-linux-8-stig-baseline
 
  #SV-230331    
