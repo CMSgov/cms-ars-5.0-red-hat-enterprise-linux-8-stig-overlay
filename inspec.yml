@@ -363,12 +363,12 @@ inputs:
   - name: days_of_inactivity
     desc: Maximum number of days if account inactivity before account lockout
     type: Numeric
-    profile: redhat-enterprise-linux-8-stig-baseline
     <% if ENV['BASELINE'] == 'High-HVA' || ENV['BASELINE'] == 'High' %>
     value: 30
     <% elsif ENV['BASELINE'].nil? || ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'] == 'Moderate-HVA' %>
     value: 60
     <% end %>
+    profile: redhat-enterprise-linux-8-stig-baseline
 
   #SV-230346
   - name: maxlogins_limit
