@@ -275,11 +275,7 @@ inputs:
     value: 
       hours: 12
       days: 0.5
-    <% elsif ENV['BASELINE'] == 'High' %>
-    value: 
-      hours: 24
-      days: 1
-    <% elsif ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'].nil? %>
+    <% elsif ENV['BASELINE'] == 'High' || ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'].nil?  %>
     value: 
       hours: 24
       days: 1
