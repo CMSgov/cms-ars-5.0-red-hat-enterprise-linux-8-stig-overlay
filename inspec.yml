@@ -368,8 +368,7 @@ inputs:
     value: 30
     <% elsif ENV['BASELINE'].nil? || ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'] == 'Moderate-HVA' %>
     value: 60
-
-    
+    <% end %>
 
   #SV-230346
   - name: maxlogins_limit
