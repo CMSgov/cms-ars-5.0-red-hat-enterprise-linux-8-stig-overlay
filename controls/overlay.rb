@@ -31,7 +31,7 @@ include_controls 'redhat-enterprise-linux-8-stig-baseline' do
     tag nist: ["SC-45 (1)"]
   end
   
-  ## AC-2(3) maintains requirement to disable accounts, removed from rev 4's IA-5(1)"(e)"
+  ## AC-2(3) maintains requirement to disable accounts, removed from rev 4's IA-4 e
   
   control "SV-230373" do
     tag nist: ["AC-2 (3)"]
