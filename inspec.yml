@@ -374,7 +374,9 @@ inputs:
   - name: maxlogins_limit
     desc: Amount of max logins allowed
     type: String
-    value: '10'
+    <% if ENV['BASELINE'] == 'High-HVA' || ENV['BASELINE'] == 'High' %>
+    value: '1'
+    <% end %>
     profile: redhat-enterprise-linux-8-stig-baseline
 
   - name: banner_message_text_gui
