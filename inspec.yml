@@ -1,0 +1,416 @@
+name: cms-ars-5.0-red-hat-enterprise-linux-8-stig-overlay
+title: cms-ars-5.0-red-hat-enterprise-linux-8-stig-overlay
+maintainer: CMS SAF team
+copyright: .
+copyright_email: saf@cms.hhs.gov
+license: Apache-2.0
+summary: "CMS ARS 5.0 Overlay InSpec Validation Profile for RHEL8 STIG"
+version: 1.3.0
+inspec_version: ">= 4.0"
+
+depends:
+- name: redhat-enterprise-linux-8-stig-baseline
+  url: https://github.com/CMSgov/redhat-enterprise-linux-8-stig-baseline/archive/main.tar.gz
+
+inputs:
+  - name: system_categorization
+    desc: "Selected system baseline based on the environment variable"
+    type: String
+    value: <%= ENV['BASELINE'].nil? ? 'Moderate (Default)' : ENV['BASELINE'] %>
+
+  - name: org_name 
+    desc: "Name of the organization running this profile"
+    type: Hash
+    value:
+      acronym: "CMS"
+      full_form: "Centers for Medicare & Medicaid Services"
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: overlay_controls
+    desc: 'List of inapplicable controls in ARS 5.0 based on the system categorization'
+    type: Array
+    <% if ENV['BASELINE'] == 'High-HVA' %>
+    value: 
+      - "SV-230359" # IA-5 (1) a
+      - "SV-230362" # IA-5 (1) b
+      - "SV-230375" # IA-5 (1) a
+    <% elsif ENV['BASELINE'] == 'High' %>
+    value: 
+      - "SV-230364" # IA-5 (1) d
+      - "SV-230365" # IA-5 (1) d
+      - "SV-230366" # IA-5 (1) d
+      - "SV-230367" # IA-5 (1) d
+      - "SV-230362" # IA-5 (1) b
+      - "SV-230375" # IA-5 (1) a
+    <% elsif ENV['BASELINE'] == 'Moderate-HVA' %>
+    value: 
+      - "SV-230346" # AC-10
+      - "SV-230483" # AU-5 (1)
+      - "SV-244543" # AU-5 (1)
+      - "SV-230296" # IA-2 (5)
+      - "SV-230282" # SI-6 a
+      - "SV-230359" # IA-5 (1) a
+      - "SV-230362" # IA-5 (1) b
+      - "SV-230375" # IA-5 (1) a
+    <% elsif ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'].nil? %> # Default
+    value:
+      - "SV-230240" # SC-3
+      - "SV-230241" # SC-3
+      - "SV-230277" # SC-3
+      - "SV-230278" # SC-3
+      - "SV-230279" # SC-3
+      - "SV-230282" # SI-6
+      - "SV-230296" # IA-2 (5)
+      - "SV-230346" # AC-10
+      - "SV-230475" # AU-9 (3)
+      - "SV-230483" # AU-5 (1)
+      - "SV-244543" # AU-5 (1)
+      - "SV-230364" # IA-5 (1) d 
+      - "SV-230365" # IA-5 (1) d
+      - "SV-230366" # IA-5 (1) d
+      - "SV-230367" # IA-5 (1) d
+      - "SV-230362" # IA-5 (1) b
+      - "SV-230375" # IA-5 (1) a
+    <% elsif ENV['BASELINE'] == 'Low-HVA' %>
+    value:
+      - "SV-230346" # AC-10
+      - "SV-230347" # AC-11
+      - "SV-230348" # AC-11
+      - "SV-230349" # AC-11
+      - "SV-230350" # AC-11
+      - "SV-230351" # AC-11
+      - "SV-230352" # AC-11
+      - "SV-230353" # AC-11
+      - "SV-230354" # AC-11
+      - "SV-230535" # AC-11
+      - "SV-230537" # AC-11
+      - "SV-230538" # AC-11
+      - "SV-230539" # AC-11
+      - "SV-230228" # AC-17 (1)
+      - "SV-230504" # AC-17 (1)
+      - "SV-230505" # AC-17 (1)
+      - "SV-244544" # AC-17 (1)
+      - "SV-230506" # AC-18 (1)
+      - "SV-230507" # AC-18 (1)
+      - "SV-230483" # AU-5 (1)
+      - "SV-244543" # AU-5 (1)
+      - "SV-230508" # CM-7 (2)
+      - "SV-230509" # CM-7 (2)
+      - "SV-230510" # CM-7 (2)
+      - "SV-230511" # CM-7 (2)
+      - "SV-230512" # CM-7 (2)
+      - "SV-230513" # CM-7 (2)
+      - "SV-230514" # CM-7 (2)
+      - "SV-230515" # CM-7 (2)
+      - "SV-230516" # CM-7 (2)
+      - "SV-230517" # CM-7 (2)
+      - "SV-230518" # CM-7 (2)
+      - "SV-230519" # CM-7 (2)
+      - "SV-230520" # CM-7 (2)
+      - "SV-230521" # CM-7 (2)
+      - "SV-230522" # CM-7 (2)
+      - "SV-230523" # CM-7 (2)
+      - "SV-230545" # CM-7 (2)
+      - "SV-230546" # CM-7 (2)
+      - "SV-230296" # IA-2 (5)
+      - "SV-230229" # IA-5 (2)
+      - "SV-230230" # IA-5 (2)
+      - "SV-230355" # IA-5 (2)
+      - "SV-230242" # SC-4
+      - "SV-230243" # SC-4
+      - "SV-230269" # SC-4
+      - "SV-230270" # SC-4
+      - "SV-230244" # SC-10
+      - "SV-244525" # SC-10
+      - "SV-244540" # SI-2 (2)
+      - "SV-230282" # SI-6
+      - "SV-230245" # SI-11
+      - "SV-230246" # SI-11
+      - "SV-230247" # SI-11
+      - "SV-230248" # SI-11
+      - "SV-230249" # SI-11
+      - "SV-230250" # SI-11
+      - "SV-230276" # SI-16
+      - "SV-230280" # SI-16  
+      - "SV-230359" # IA-5 (1) a
+      - "SV-230362" # IA-5 (1) b
+      - "SV-230375" # IA-5 (1) a
+      - "SV-230373" # AC-2 (3)
+    <% elsif ENV['BASELINE'] == 'Low' %> 
+    value:
+      - "SV-230331" # AC-2 (2)
+      - "SV-230374" # AC-2 (2)
+      - "SV-237642" # AC-6 (5)
+      - "SV-230346" # AC-10
+      - "SV-230347" # AC-11
+      - "SV-230348" # AC-11
+      - "SV-230349" # AC-11
+      - "SV-230350" # AC-11
+      - "SV-230351" # AC-11
+      - "SV-230352" # AC-11
+      - "SV-230353" # AC-11
+      - "SV-230354" # AC-11
+      - "SV-230535" # AC-11
+      - "SV-230537" # AC-11
+      - "SV-230538" # AC-11
+      - "SV-230539" # AC-11
+      - "SV-230228" # AC-17 (1)
+      - "SV-230504" # AC-17 (1)
+      - "SV-230505" # AC-17 (1)
+      - "SV-244544" # AC-17 (1)
+      - "SV-230223" # AC-17 (2)
+      - "SV-230251" # AC-17 (2)
+      - "SV-230252" # AC-17 (2)
+      - "SV-230254" # AC-17 (2)
+      - "SV-230255" # AC-17 (2)
+      - "SV-230256" # AC-17 (2)
+      - "SV-230257" # AC-17 (2)
+      - "SV-244526" # AC-17 (2)
+      - "SV-230506" # AC-18 (1)
+      - "SV-230507" # AC-18 (1)
+      - "SV-230483" # AU-5 (1)
+      - "SV-244543" # AU-5 (1)
+      - "SV-230475" # AU-9 (3)
+      - "SV-230508" # CM-7 (2)
+      - "SV-230509" # CM-7 (2)
+      - "SV-230510" # CM-7 (2)
+      - "SV-230511" # CM-7 (2)
+      - "SV-230512" # CM-7 (2)
+      - "SV-230513" # CM-7 (2)
+      - "SV-230514" # CM-7 (2)
+      - "SV-230515" # CM-7 (2)
+      - "SV-230516" # CM-7 (2)
+      - "SV-230517" # CM-7 (2)
+      - "SV-230518" # CM-7 (2)
+      - "SV-230519" # CM-7 (2)
+      - "SV-230520" # CM-7 (2)
+      - "SV-230521" # CM-7 (2)
+      - "SV-230522" # CM-7 (2)
+      - "SV-230523" # CM-7 (2)
+      - "SV-230545" # CM-7 (2)
+      - "SV-230546" # CM-7 (2)
+      - "SV-230296" # IA-2 (5)
+      - "SV-230502" # IA-3
+      - "SV-230503" # IA-3
+      - "SV-230524" # IA-3
+      - "SV-244547" # IA-3
+      - "SV-244548" # IA-3
+      - "SV-230229" # IA-5 (2)
+      - "SV-230230" # IA-5 (2)
+      - "SV-230355" # IA-5 (2) 
+      - "SV-230240" # SC-3
+      - "SV-230241" # SC-3
+      - "SV-230277" # SC-3
+      - "SV-230278" # SC-3
+      - "SV-230279" # SC-3
+      - "SV-230242" # SC-4
+      - "SV-230243" # SC-4
+      - "SV-230269" # SC-4
+      - "SV-230270" # SC-4
+      - "SV-230526" # SC-8
+      - "SV-244549" # SC-8
+      - "SV-230244" # SC-10
+      - "SV-244525" # SC-10      
+      - "SV-230224" # SC-28
+      - "SV-244540" # SI-2 (2)
+      - "SV-230282" # SI-6
+      - "SV-230245" # SI-11
+      - "SV-230246" # SI-11
+      - "SV-230247" # SI-11
+      - "SV-230248" # SI-11
+      - "SV-230249" # SI-11
+      - "SV-230250" # SI-11
+      - "SV-230276" # SI-16
+      - "SV-230280" # SI-16
+      - "SV-230364" # IA-5 (1) d
+      - "SV-230365" # IA-5 (1) d
+      - "SV-230366" # IA-5 (1) d
+      - "SV-230367" # IA-5 (1) d
+      - "SV-230362" # IA-5 (1) b
+      - "SV-230375" # IA-5 (1) a
+      - "SV-230373" # AC-2 (3)
+    <% else %>
+    required: true
+    value: []
+    <% end %>
+
+#SV-230244, SV-244525, based on SC-10
+  - name: client_alive_interval 
+    desc: Interval of network connections associated with SSH 
+    type: Numeric
+    value: 1800
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+#SV-230352, SV-230353 based on AC-11    
+  - name: system_inactivity_timeout
+    desc: Maximum system inactivity timeout (time in seconds).
+    type: Numeric
+    value: 900
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+ #SV-230331    
+  - name: temp_account_expire_time
+    desc: Temporary (short term) should be set with an expiration date/time
+    type: Hash
+    <% if ENV['BASELINE'] == 'High-HVA' || ENV['BASELINE'] == 'Moderate-HVA' %>
+    value: 
+      hours: 12
+      days: 0.5
+    <% elsif ENV['BASELINE'] == 'High' %>
+    value: 
+      hours: 720
+      days: 30
+    <% elsif ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'].nil? %>
+    value: 
+      hours: 1440
+      days: 60
+    <% end %>
+    profile: redhat-enterprise-linux-8-stig-baseline
+    
+#SV-230374  
+  - name: emergency_account_expire_time
+    desc: Emergency (short term) should be set with an expiration date/time
+    type: Hash
+    <% if ENV['BASELINE'] == 'High-HVA' || ENV['BASELINE'] == 'Moderate-HVA' %>
+    value: 
+      hours: 12
+      days: 0.5
+    <% elsif ENV['BASELINE'] == 'High' || ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'].nil?  %>
+    value: 
+      hours: 24
+      days: 1
+    <% end %>   
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+#SV-230483, SV-244543
+  - name: storage_volume
+    desc: Amount of audit storage volume
+    type: Numeric
+    value: 80
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: storage_space_left
+    desc: Amount of audit storage volume left
+    type: Numeric
+    value: 20
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+#SV-230332, SV-230333, SV-230334, SV-230335, SV-230336, SV-230337, SV-230338, SV-230340, SV-230341, SV-230344, SV-230345
+  - name: unsuccessful_attempts
+    desc: Maximum number of unsuccessful attempts before lockout
+    type: Numeric
+    <% if ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'] == 'Moderate-HVA' || ENV['BASELINE'] == 'Low' || ENV['BASELINE'] == 'Low-HVA' || ENV['BASELINE'].nil? %>
+    value: 5
+    <% else %>
+    value: 3
+    <% end %>
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: fail_interval 
+    desc: Interval of time in which the consecutive failed logon attempts must occur in order for the account to be locked out (time in seconds)
+    type: Numeric
+    value: 7200
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: lockout_time
+    desc: Minimum amount of time account must be locked out after failed logins. This attribute should never be set greater than 604800 (time in seconds). ("0" or "never" locks until released by an administrator)
+    type: Numeric
+    <% if ENV['BASELINE'] == 'High' || ENV['BASELINE'] == 'High-HVA' %>
+    value: 0
+    <% elsif ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'] == 'Moderate-HVA' || ENV['BASELINE'].nil? %>
+    value: 3600
+    <% else %>
+    value: 900
+    <% end %>
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+#SV-230363
+  - name: difok
+    desc: Minimum number of characters that must be different from previous password
+    type: Numeric
+    <% if  ENV['BASELINE'] == 'Moderate' ||  ENV['BASELINE'] == 'High' ||  ENV['BASELINE'] == 'Low' || ENV['BASELINE'].nil?%>
+    value: 12
+    <% else %>
+    value: 15
+    <% end %>
+    profile: redhat-enterprise-linux-8-stig-baseline 
+
+#SV-230368
+  - name: min_reuse_generations
+    desc: Number of reuse generations
+    type: Numeric
+    <% if ENV['BASELINE'] == 'High' %>
+    value: 12
+    <% elsif ENV['BASELINE'].nil? || ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'] == 'Low' %>
+    value: 6
+    <% else %>
+    value: 400 # ARS 5 states that password reuse is disallowed and 400 is the maximum value RHEL can accommodate
+    <% end %>
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+# SV-230369, SV-230370
+  - name: min_len
+    desc: Minimum number of characters for a new password
+    type: Numeric
+    <% if ENV['BASELINE'] == 'High-HVA' || ENV['BASELINE'] == 'Moderate-HVA' || ENV['BASELINE'] == 'Low-HVA' %>
+    value: 20
+    <% else %> 
+    value: 15
+    <% end %>
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  #SV-230373
+  - name: days_of_inactivity
+    desc: Maximum number of days if account inactivity before account lockout
+    type: Numeric
+    <% if ENV['BASELINE'] == 'High-HVA' || ENV['BASELINE'] == 'High' %>
+    value: 30
+    <% elsif ENV['BASELINE'].nil? || ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'] == 'Moderate-HVA' %>
+    value: 60
+    <% end %>
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  #SV-230346
+  - name: maxlogins_limit
+    desc: Amount of max logins allowed
+    type: String
+    <% if ENV['BASELINE'] == 'High-HVA' || ENV['BASELINE'] == 'High' %>
+    value: '1'
+    <% end %>
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: banner_message_text_gui
+    description: The banner message text for GUI logins.
+    type: string
+    value: "* This warning banner provides privacy and security notices consistent with applicable federal laws, directives, and other federal guidance for accessing this Government system, which includes (1) this computer network, (2) all computers connected to this network, and (3) all devices and storage media attached to this network or to a computer on this network.
+  * This system is provided for Government authorized use only.
+  * Unauthorized or improper use of this system is prohibited and may result in disciplinary action and/or civil and criminal penalties.
+  * Personal use of social media and networking sites on this system is limited as to not interfere with official work duties and is subject to monitoring.
+  * By using this system, you understand and consent to the following:
+  - The Government may monitor, record, and audit your system usage, including usage of personal devices and email systems for official duties or to conduct HHS business. Therefore, you have no reasonable expectation of privacy regarding any communication or data transiting or stored on this system. At any time, and for any lawful Government purpose, the government may monitor, intercept, and search and seize any communication or data transiting or stored on this system.
+  - Any communication or data transiting or stored on this system may be disclosed or used for any lawful Government purpose"
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: banner_message_text_cli
+    description: The bannermessage text for command line interface logins.
+    type: string
+    value: "* This warning banner provides privacy and security notices consistent with applicable federal laws, directives, and other federal guidance for accessing this Government system, which includes (1) this computer network, (2) all computers connected to this network, and (3) all devices and storage media attached to this network or to a computer on this network.
+  * This system is provided for Government authorized use only.
+  * Unauthorized or improper use of this system is prohibited and may result in disciplinary action and/or civil and criminal penalties.
+  * Personal use of social media and networking sites on this system is limited as to not interfere with official work duties and is subject to monitoring.
+  * By using this system, you understand and consent to the following:
+  - The Government may monitor, record, and audit your system usage, including usage of personal devices and email systems for official duties or to conduct HHS business. Therefore, you have no reasonable expectation of privacy regarding any communication or data transiting or stored on this system. At any time, and for any lawful Government purpose, the government may monitor, intercept, and search and seize any communication or data transiting or stored on this system.
+  - Any communication or data transiting or stored on this system may be disclosed or used for any lawful Government purpose"
+    profile: redhat-enterprise-linux-8-stig-baseline
+
+  - name: banner_message_text_ral
+    description: The banner message text for remote access logins.
+    type: string
+    value: "* This warning banner provides privacy and security notices consistent with applicable federal laws, directives, and other federal guidance for accessing this Government system, which includes (1) this computer network, (2) all computers connected to this network, and (3) all devices and storage media attached to this network or to a computer on this network.
+  * This system is provided for Government authorized use only.
+  * Unauthorized or improper use of this system is prohibited and may result in disciplinary action and/or civil and criminal penalties.
+  * Personal use of social media and networking sites on this system is limited as to not interfere with official work duties and is subject to monitoring.
+  * By using this system, you understand and consent to the following:
+  - The Government may monitor, record, and audit your system usage, including usage of personal devices and email systems for official duties or to conduct HHS business. Therefore, you have no reasonable expectation of privacy regarding any communication or data transiting or stored on this system. At any time, and for any lawful Government purpose, the government may monitor, intercept, and search and seize any communication or data transiting or stored on this system.
+  - Any communication or data transiting or stored on this system may be disclosed or used for any lawful Government purpose"
+    profile: redhat-enterprise-linux-8-stig-baseline
