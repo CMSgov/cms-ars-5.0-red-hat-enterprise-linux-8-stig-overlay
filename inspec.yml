@@ -344,7 +344,7 @@ inputs:
     <% elsif ENV['BASELINE'].nil? || ENV['BASELINE'] == 'Moderate' || ENV['BASELINE'] == 'Low' %>
     value: 6
     <% else %>
-    value: 0
+    value: 400 # ARS 5 states that password reuse is disallowed and 400 is the maximum value RHEL can accommodate
     <% end %>
     profile: redhat-enterprise-linux-8-stig-baseline
 
