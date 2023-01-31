@@ -286,13 +286,17 @@ inputs:
   - name: storage_volume
     desc: Amount of audit storage volume
     type: Numeric
+    <% if ENV['BASELINE'] == 'High' || ENV['BASELINE'] == 'High-HVA' %>
     value: 80
+    <% end %>
     profile: redhat-enterprise-linux-8-stig-baseline
 
   - name: storage_space_left
     desc: Amount of audit storage volume left
     type: Numeric
+    <% if ENV['BASELINE'] == 'High' || ENV['BASELINE'] == 'High-HVA' %>
     value: 20
+    <% end %>
     profile: redhat-enterprise-linux-8-stig-baseline
 
 #SV-230332, SV-230333, SV-230334, SV-230335, SV-230336, SV-230337, SV-230338, SV-230340, SV-230341, SV-230344, SV-230345
