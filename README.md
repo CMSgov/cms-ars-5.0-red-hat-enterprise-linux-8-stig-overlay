@@ -1,4 +1,6 @@
 # cms-ars-5.0-red-hat-enterprise-linux-8-stig-overlay
+**CMS’ ISPG (Information Security and Privacy Group) decided to discontinue funding the customization of MITRE’s Security Automation Framework (SAF) for CMS after September 2023. This repo is now in archive mode, but still accessible. For more information about SAF with current links, see https://security.cms.gov/learn/security-automation-framework-saf**
+
 InSpec profile overlay to validate the secure configuration of Red Hat Enterprise Linux 8 against [DISA's](https://iase.disa.mil/stigs/Pages/index.aspx) Red Hat Enterprise Linux 8 STIG Version 1 Release 3 tailored for CMS ARS 5.0.
 
 ## Getting Started  
